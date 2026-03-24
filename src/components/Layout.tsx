@@ -1,0 +1,186 @@
+import { useState, useEffect } from 'react';
+import { Menu, X, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Page, NavItem } from '../types';
+
+interface NavbarProps {
+  currentPage: Page;
+  onPageChange: (page: Page) => void;
+}
+
+
+const navItems: NavItem[] = [
+  { label: 'Trang chủ', id: 'home' },
+  { label: 'Về iVital', id: 'about' },
+  { label: 'Hệ sinh thái', id: 'ecosystem' },
+  { label: 'Dự án', id: 'projects' },
+  { label: 'Liên hệ', id: 'contact' },
+];
+
+export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white/80 backdrop-blur-lg shadow-sm py-3' : 'bg-transparent py-6'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        {/* Logo */}
+        <div 
+          className="flex items-center gap-2 cursor-pointer group"
+          onClick={() => onPageChange('home')}
+        >
+          <div className="w-10 h-10 bg-ivital-pink rounded-xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform">
+            V
+          </div>
+          <span className="text-2xl font-extrabold tracking-tight text-ivital-dark">
+            iVital<span className="text-ivital-pink">.</span>
+          </span>
+        </div>
+
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex items-center gap-8">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => onPageChange(item.id)}
+              className={`text-sm font-semibold transition-colors hover:text-ivital-pink ${
+                currentPage === item.id ? 'text-ivital-pink' : 'text-ivital-dark/70'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+          <button 
+            onClick={() => onPageChange('contact')}
+            className="btn-primary flex items-center gap-2 text-sm"
+          >
+            Hợp tác <ChevronRight size={16} />
+          </button>
+        </div>
+
+        {/* Mobile Toggle */}
+        <button
+          className="lg:hidden text-ivital-dark"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-0 w-full bg-white shadow-xl lg:hidden border-t border-gray-100"
+          >
+            <div className="flex flex-col p-6 gap-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    onPageChange(item.id);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`text-lg font-semibold text-left py-2 ${
+                    currentPage === item.id ? 'text-ivital-pink' : 'text-ivital-dark'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+              <button 
+                onClick={() => {
+                  onPageChange('contact');
+                  setIsMobileMenuOpen(false);
+                }}
+                className="btn-primary w-full mt-4"
+              >
+                Hợp tác ngay
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
+
+export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void }) => {
+  return (
+    <footer className="bg-ivital-dark text-white pt-20 pb-10 px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="space-y-6">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-ivital-pink rounded-xl flex items-center justify-center text-white font-bold text-xl">
+              V
+            </div>
+            <span className="text-2xl font-extrabold tracking-tight">
+              iVital<span className="text-ivital-pink">.</span>
+            </span>
+          </div>
+          <p className="text-gray-400 leading-relaxed">
+            Hệ sinh thái chăm sóc sức khỏe thế hệ mới ứng dụng AI và dữ liệu lớn, mang lại cuộc sống khỏe mạnh cho mọi người.
+          </p>
+        </div>
+
+        <div>
+          <h4 className="text-lg font-bold mb-6">Liên kết nhanh</h4>
+          <ul className="space-y-4 text-gray-400">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <button 
+                  onClick={() => onPageChange(item.id)}
+                  className="hover:text-ivital-pink transition-colors"
+                >
+                  {item.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-lg font-bold mb-6">Dịch vụ</h4>
+          <ul className="space-y-4 text-gray-400">
+            <li><button className="hover:text-ivital-pink transition-colors text-left">iVital Care</button></li>
+            <li><button className="hover:text-ivital-pink transition-colors text-left">iVital AI Assistant</button></li>
+            <li><button className="hover:text-ivital-pink transition-colors text-left">iVital Lab</button></li>
+            <li><button className="hover:text-ivital-pink transition-colors text-left">iVital Pharmacy</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-lg font-bold mb-6">Liên hệ</h4>
+          <ul className="space-y-4 text-gray-400">
+            <li>Tòa nhà iVital, Quận 1, TP. Hồ Chí Minh</li>
+            <li>contact@ivital.vn</li>
+            <li>+84 123 456 789</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto pt-10 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
+        <p>© 2024 iVital Technology. All rights reserved.</p>
+        <div className="flex gap-8">
+          <button className="hover:text-white transition-colors">Điều khoản sử dụng</button>
+          <button className="hover:text-white transition-colors">Chính sách bảo mật</button>
+        </div>
+      </div>
+    </footer>
+  );
+};
