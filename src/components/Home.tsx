@@ -25,8 +25,8 @@ const differentiators = [
 ];
 
 const projectShowcaseSmall = [
-  { image: 'https://picsum.photos/seed/lab/1200/400', title: 'iVital Lab', description: 'Hệ thống xét nghiệm thông minh với kết quả được phân tích bởi AI.' },
-  { image: 'https://picsum.photos/seed/pharmacy/1200/400', title: 'iVital BP', description: 'App theo dõi huyết áp và sức khỏe tim mạch' },
+  { image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80', title: 'iVital Lab', description: 'Hệ thống xét nghiệm thông minh với kết quả được phân tích bởi AI.' },
+  { image: 'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&q=80', title: 'iVital BP', description: 'App theo dõi huyết áp và sức khỏe tim mạch' },
 ];
 
 export const Home = ({ onPageChange }: PageProps) => {
@@ -48,8 +48,7 @@ export const Home = ({ onPageChange }: PageProps) => {
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-ivital-dark">
             Hệ sinh thái <br />
-            <span className="gradient-text">Chăm sóc sức khỏe</span> <br />
-            toàn diện
+            <span className="gradient-text">Chăm sóc sức khỏe</span> toàn diện
           </h1>
           <p className="text-xl text-ivital-gray max-w-xl leading-relaxed">
             iVital Technology kết hợp sức mạnh của AI và dữ liệu lớn để mang lại giải pháp chăm sóc sức khỏe cá nhân hóa, hiệu quả và dễ tiếp cận cho mọi người.
@@ -72,10 +71,9 @@ export const Home = ({ onPageChange }: PageProps) => {
         >
           <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
             <img 
-              src="https://picsum.photos/seed/health-tech/800/1000" 
+              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80" 
               alt="Health Tech" 
               className="w-full h-auto object-cover"
-              referrerPolicy="no-referrer"
             />
           </div>
           <FloatingStatCard
@@ -136,10 +134,9 @@ export const Home = ({ onPageChange }: PageProps) => {
               onClick={() => onPageChange('projects')}
             >
               <img 
-                src="https://picsum.photos/seed/care/1200/800" 
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80" 
                 alt="iVital Care" 
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ivital-dark/90 via-ivital-dark/20 to-transparent p-12 flex flex-col justify-end">
                 <div className="space-y-4">
@@ -161,7 +158,6 @@ export const Home = ({ onPageChange }: PageProps) => {
                     src={project.image} 
                     alt={project.title} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ivital-dark/80 to-transparent p-8 flex flex-col justify-end">
                     <h4 className="text-2xl font-bold text-white">{project.title}</h4>

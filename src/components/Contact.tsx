@@ -4,8 +4,8 @@ import { PageProps } from '../types';
 
 const contactChannels = [
   { icon: <Mail />, label: 'Email', value: 'contact@ivital.vn', color: 'bg-ivital-pink/10 text-ivital-pink' },
-  { icon: <Phone />, label: 'Hotline', value: '+84 123 456 789', color: 'bg-ivital-blue/10 text-ivital-blue' },
-  { icon: <MapPin />, label: 'Địa chỉ', value: 'Quận 1, TP. HCM', color: 'bg-ivital-pink/10 text-ivital-pink' },
+  { icon: <Phone />, label: 'Hotline', value: '+84 923 266 979', color: 'bg-ivital-blue/10 text-ivital-blue' },
+  { icon: <MapPin />, label: 'Địa chỉ', value: 'Số 3A, Tổ 3 Cụm Kiến Thiết, P. Thanh Xuân, Hà Nội', color: 'bg-ivital-pink/10 text-ivital-pink' },
   { icon: <MessageCircle />, label: 'Zalo', value: 'iVital Technology', color: 'bg-ivital-blue/10 text-ivital-blue' },
 ];
 
@@ -110,10 +110,9 @@ export const Contact = (_props: PageProps) => {
 
             <div className="rounded-[3rem] overflow-hidden shadow-xl h-64 border-8 border-white">
               <img 
-                src="https://picsum.photos/seed/map/1000/600" 
+                src="https://images.unsplash.com/photo-1576671081837-49000212a370?w=800&q=80" 
                 alt="Map" 
                 className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
               />
             </div>
           </div>
@@ -143,10 +142,9 @@ export const Contact = (_props: PageProps) => {
           <div className="flex-1">
             <div className="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white/10">
               <img 
-                src="https://picsum.photos/seed/partnership/1000/800" 
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80" 
                 alt="Partnership" 
                 className="w-full h-auto"
-                referrerPolicy="no-referrer"
               />
             </div>
           </div>

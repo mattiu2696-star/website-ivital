@@ -14,11 +14,11 @@ const ecosystemProducts = [
   {
     title: 'iVital Care',
     icon: <Smartphone size={32} />,
-    description: 'Ứng dụng di động theo dõi sức khỏe cá nhân, kết nối bác sĩ và quản lý hồ sơ bệnh án số.',
-    features: ['Theo dõi chỉ số sinh tồn', 'Đặt lịch khám trực tuyến', 'Hồ sơ bệnh án số', 'Tư vấn video call'],
+    description: 'Ứng dụng di động đặt điều dưỡng chăm sóc sức khoẻ, kết nối điều dưỡng và bệnh nhân mọi lúc mọi nơi.',
+    features: ['Kết nối điều dưỡng nhanh chóng', 'Đặt lịch chăm sóc tại nhà', 'Hồ sơ sức khoẻ số', 'Theo dõi quá trình điều trị'],
   },
   {
-    title: 'iVital AI Assistant',
+    title: 'iVital AI',
     icon: <Zap size={32} />,
     description: 'Trợ lý ảo thông minh hỗ trợ giải đáp thắc mắc y tế và đưa ra các lời khuyên sức khỏe cá nhân hóa.',
     features: ['Tư vấn sức khỏe 24/7', 'Dự đoán nguy cơ bệnh lý', 'Nhắc lịch uống thuốc', 'Phân tích chế độ dinh dưỡng'],
@@ -30,10 +30,10 @@ const ecosystemProducts = [
     features: ['Xét nghiệm tại nhà', 'Kết quả nhanh chóng', 'Phân tích AI chuyên sâu', 'Lưu trữ kết quả trọn đời'],
   },
   {
-    title: 'iVital Pharmacy',
+    title: 'iVital BP',
     icon: <Heart size={32} />,
-    description: 'Chuỗi nhà thuốc số hóa cung cấp dược phẩm và thực phẩm chức năng chính hãng với dịch vụ giao hàng nhanh.',
-    features: ['Mua thuốc trực tuyến', 'Giao hàng trong 2h', 'Dược sĩ tư vấn tận tâm', 'Sản phẩm chính hãng 100%'],
+    description: 'App theo dõi huyết áp và sức khỏe tim mạch, cảnh báo sớm các nguy cơ tiềm ẩn.',
+    features: ['Theo dõi huyết áp liên tục', 'Cảnh báo chỉ số bất thường', 'Biểu đồ sức khoẻ trực quan', 'Kết nối thiết bị đeo thông minh'],
   },
 ];
 

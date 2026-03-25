@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight, HeartPulse } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Page, NavItem } from '../types';
 
@@ -14,7 +14,6 @@ const navItems: NavItem[] = [
   { label: 'Về iVital', id: 'about' },
   { label: 'Hệ sinh thái', id: 'ecosystem' },
   { label: 'Dự án', id: 'projects' },
-  { label: 'Liên hệ', id: 'contact' },
 ];
 
 export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
@@ -41,11 +40,11 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
           className="flex items-center gap-2 cursor-pointer group"
           onClick={() => onPageChange('home')}
         >
-          <div className="w-10 h-10 bg-ivital-pink rounded-xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform">
-            V
+          <div className="w-10 h-10 bg-gradient-to-br from-ivital-pink to-ivital-blue rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+            <HeartPulse className="w-6 h-6" />
           </div>
-          <span className="text-2xl font-extrabold tracking-tight text-ivital-dark">
-            iVital<span className="text-ivital-pink">.</span>
+          <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-ivital-pink to-ivital-blue bg-clip-text text-transparent">
+            iVital Technology
           </span>
         </div>
 
@@ -66,7 +65,7 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
             onClick={() => onPageChange('contact')}
             className="btn-primary flex items-center gap-2 text-sm"
           >
-            Hợp tác <ChevronRight size={16} />
+            Liên hệ <ChevronRight size={16} />
           </button>
         </div>
 
@@ -110,7 +109,7 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
                 }}
                 className="btn-primary w-full mt-4"
               >
-                Hợp tác ngay
+                Liên hệ ngay
               </button>
             </div>
           </motion.div>
@@ -126,11 +125,11 @@ export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void })
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
         <div className="space-y-6">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-ivital-pink rounded-xl flex items-center justify-center text-white font-bold text-xl">
-              V
+            <div className="w-10 h-10 bg-gradient-to-br from-ivital-pink to-ivital-blue rounded-xl flex items-center justify-center text-white">
+              <HeartPulse className="w-6 h-6" />
             </div>
-            <span className="text-2xl font-extrabold tracking-tight">
-              iVital<span className="text-ivital-pink">.</span>
+            <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-ivital-pink to-ivital-blue bg-clip-text text-transparent">
+              iVital Technology
             </span>
           </div>
           <p className="text-gray-400 leading-relaxed">
@@ -158,24 +157,24 @@ export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void })
           <h4 className="text-lg font-bold mb-6">Dịch vụ</h4>
           <ul className="space-y-4 text-gray-400">
             <li><button className="hover:text-ivital-pink transition-colors text-left">iVital Care</button></li>
-            <li><button className="hover:text-ivital-pink transition-colors text-left">iVital AI Assistant</button></li>
+            <li><button className="hover:text-ivital-pink transition-colors text-left">iVital AI</button></li>
             <li><button className="hover:text-ivital-pink transition-colors text-left">iVital Lab</button></li>
-            <li><button className="hover:text-ivital-pink transition-colors text-left">iVital Pharmacy</button></li>
+            <li><button className="hover:text-ivital-pink transition-colors text-left">iVital BP</button></li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-lg font-bold mb-6">Liên hệ</h4>
           <ul className="space-y-4 text-gray-400">
-            <li>Tòa nhà iVital, Quận 1, TP. Hồ Chí Minh</li>
+            <li>Số 3A, Tổ 3 Cụm Kiến Thiết, P. Thanh Xuân, Hà Nội</li>
             <li>contact@ivital.vn</li>
-            <li>+84 123 456 789</li>
+            <li>+84 923 266 979</li>
           </ul>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto pt-10 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
-        <p>© 2024 iVital Technology. All rights reserved.</p>
+        <p>© 2025 iVital Technology. All rights reserved.</p>
         <div className="flex gap-8">
           <button className="hover:text-white transition-colors">Điều khoản sử dụng</button>
           <button className="hover:text-white transition-colors">Chính sách bảo mật</button>

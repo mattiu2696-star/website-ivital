@@ -11,18 +11,17 @@ const coreValues = [
 ];
 
 const milestones = [
-  { year: '2020', title: 'Thành lập iVital', description: 'Bắt đầu với đội ngũ 5 chuyên gia AI và bác sĩ tâm huyết.' },
-  { year: '2021', title: 'Ra mắt iVital Care', description: 'Ứng dụng đạt 100,000 người dùng chỉ sau 6 tháng ra mắt.' },
-  { year: '2022', title: 'Hợp tác chiến lược', description: 'Ký kết với 50 bệnh viện lớn trên toàn quốc.' },
-  { year: '2023', title: 'Hệ sinh thái iVital Lab', description: 'Triển khai hệ thống xét nghiệm tự động ứng dụng AI.' },
-  { year: '2024', title: 'Vươn tầm khu vực', description: 'Mở rộng thị trường sang các nước Đông Nam Á.' },
+  { year: '2023', title: 'Ý tưởng & nghiên cứu', description: 'Khởi nguồn ý tưởng xây dựng hệ sinh thái chăm sóc sức khỏe ứng dụng công nghệ AI.' },
+  { year: '2024', title: 'Xây dựng nền tảng', description: 'Phát triển kiến trúc hệ thống, xây dựng đội ngũ và các sản phẩm cốt lõi.' },
+  { year: '2025', title: 'Hoàn thiện & thử nghiệm', description: 'Hoàn thiện iVital Care, AI, Lab, BP và thử nghiệm với người dùng thực tế.' },
+  { year: '2026', title: 'Chính thức ra mắt', description: 'Ra mắt hệ sinh thái iVital Technology với 4 sản phẩm, phục vụ 10,000+ người dùng.' },
 ];
 
 const stats = [
-  { icon: <Users />, label: 'Người dùng', value: '1,000,000+' },
-  { icon: <ShieldCheck />, label: 'Bệnh viện đối tác', value: '200+' },
-  { icon: <Award />, label: 'Giải thưởng', value: '15+' },
-  { icon: <Activity />, label: 'Chuyên gia', value: '100+' },
+  { icon: <Users />, label: 'Người dùng', value: '10.000+' },
+  { icon: <ShieldCheck />, label: 'Đối tác y tế', value: '50+' },
+  { icon: <Award />, label: 'Độ chính xác', value: '99%' },
+  { icon: <Activity />, label: 'Hỗ trợ', value: '24/7' },
 ];
 
 export const About = ({ onPageChange }: PageProps) => {
@@ -53,10 +52,9 @@ export const About = ({ onPageChange }: PageProps) => {
           <div className="flex-1 relative">
             <div className="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white">
               <img 
-                src="https://picsum.photos/seed/mission/1000/1200" 
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80" 
                 alt="Mission" 
                 className="w-full h-auto"
-                referrerPolicy="no-referrer"
               />
             </div>
             <div className="absolute -bottom-10 -right-10 glass-card p-10 rounded-[3rem] shadow-xl max-w-xs space-y-4">

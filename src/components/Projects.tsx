@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Smartphone, ShieldCheck, Activity, Heart, Zap, Database, ArrowRight, CheckCircle2, Building2 } from 'lucide-react';
+import { Smartphone, ShieldCheck, Activity, Heart, Zap, Database, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { PageProps } from '../types';
 import { SectionHeader } from './ui/SectionHeader';
 import { CallToActionBanner } from './ui/CallToActionBanner';
@@ -7,28 +7,29 @@ import { FloatingStatCard } from './ui/FloatingStatCard';
 
 const features = [
   { icon: <Zap className="text-ivital-pink" size={32} />, title: 'AI Assistant', description: 'Trợ lý ảo thông minh tư vấn sức khỏe 24/7 dựa trên dữ liệu cá nhân.' },
-  { icon: <Database className="text-ivital-blue" size={32} />, title: 'Hồ sơ số hóa', description: 'Lưu trữ toàn bộ lịch sử khám bệnh, xét nghiệm và đơn thuốc an toàn.' },
-  { icon: <Smartphone className="text-ivital-pink" size={32} />, title: 'Kết nối bác sĩ', description: 'Đặt lịch khám và tư vấn trực tuyến với các bác sĩ đầu ngành.' },
+  { icon: <Database className="text-ivital-blue" size={32} />, title: 'Hồ sơ số hóa', description: 'Lưu trữ toàn bộ lịch sử chăm sóc, xét nghiệm và đơn thuốc an toàn.' },
+  { icon: <Smartphone className="text-ivital-pink" size={32} />, title: 'Kết nối điều dưỡng', description: 'Đặt lịch và kết nối điều dưỡng chăm sóc sức khoẻ tại nhà.' },
   { icon: <ShieldCheck className="text-ivital-blue" size={32} />, title: 'Bảo mật tuyệt đối', description: 'Dữ liệu được mã hóa chuẩn y tế, đảm bảo quyền riêng tư người dùng.' },
 ];
 
 const userBenefits = [
-  'Tiết kiệm 50% thời gian chờ đợi tại bệnh viện.',
+  'Tiết kiệm 50% thời gian chờ đợi và di chuyển.',
   'Theo dõi sức khỏe chủ động mọi lúc mọi nơi.',
   'Nhận cảnh báo sớm về các nguy cơ bệnh lý.',
-  'Tiếp cận dịch vụ y tế chất lượng cao với chi phí tối ưu.',
+  'Kết nối điều dưỡng chăm sóc tại nhà nhanh chóng.',
 ];
 
 const partnerBenefits = [
   'Số hóa quy trình quản lý bệnh nhân và hồ sơ bệnh án.',
-  'Tăng cường khả năng chẩn đoán chính xác nhờ hỗ trợ từ AI.',
+  'Chẩn đoán chính xác hơn với AI.',
   'Mở rộng mạng lưới tiếp cận bệnh nhân tiềm năng.',
   'Nâng cao trải nghiệm dịch vụ và uy tín thương hiệu.',
 ];
 
 const otherProjects = [
-  { title: 'iVital Lab', icon: <Activity size={32} />, image: 'https://picsum.photos/seed/lab-2/800/600', description: 'Hệ thống xét nghiệm thông minh ứng dụng AI.' },
-  { title: 'iVital Pharmacy', icon: <Building2 size={32} />, image: 'https://picsum.photos/seed/pharmacy-2/800/600', description: 'Chuỗi nhà thuốc số hóa toàn diện.' },
+  { title: 'iVital AI', icon: <Zap size={32} />, image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80', description: 'Trợ lý ảo thông minh tư vấn sức khỏe 24/7.' },
+  { title: 'iVital Lab', icon: <Activity size={32} />, image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80', description: 'Hệ thống xét nghiệm công nghệ cao ứng dụng AI.' },
+  { title: 'iVital BP', icon: <Heart size={32} />, image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80', description: 'App theo dõi huyết áp và sức khỏe tim mạch.' },
 ];
 
 export const Projects = ({ onPageChange }: PageProps) => {
@@ -50,7 +51,7 @@ export const Projects = ({ onPageChange }: PageProps) => {
             iVital <span className="gradient-text">Care</span>
           </h1>
           <p className="text-xl text-ivital-gray max-w-xl leading-relaxed">
-            Trợ lý sức khỏe cá nhân toàn diện, kết nối bác sĩ và bệnh nhân mọi lúc mọi nơi thông qua nền tảng di động thông minh.
+            Trợ lý sức khỏe cá nhân toàn diện, kết nối điều dưỡng và bệnh nhân mọi lúc mọi nơi thông qua nền tảng di động thông minh.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
             <button className="btn-primary flex items-center gap-2">
@@ -65,16 +66,35 @@ export const Projects = ({ onPageChange }: PageProps) => {
           animate={{ opacity: 1, scale: 1 }}
           className="flex-1 relative flex justify-center"
         >
-          <div className="relative z-10 w-72 md:w-80 h-[600px] bg-ivital-dark rounded-[3.5rem] p-4 shadow-2xl border-8 border-gray-800">
-            <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-              <img 
-                src="https://picsum.photos/seed/app-ui/600/1200" 
-                alt="App UI" 
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ivital-pink/20 to-transparent" />
+          {/* iPhone 17 Mockup */}
+          <div className="relative z-10 w-[240px] md:w-[260px]">
+            {/* Outer frame - titanium style */}
+            <div className="relative bg-gradient-to-b from-[#2a2a2e] to-[#1a1a1e] rounded-[2.8rem] p-[2px] shadow-[0_0_60px_rgba(0,0,0,0.3)]">
+              {/* Inner bezel */}
+              <div className="bg-black rounded-[2.7rem] p-[1.5px]">
+                {/* Screen area */}
+                <div className="relative bg-ivital-light rounded-[2.6rem] overflow-hidden">
+                  {/* Dynamic Island */}
+                  <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 w-[90px] h-[28px] bg-black rounded-full flex items-center justify-center">
+                    <div className="w-[8px] h-[8px] bg-[#1a1a2e] rounded-full ring-1 ring-gray-800 mr-3" />
+                    <div className="w-[10px] h-[10px] bg-[#0a1a3a] rounded-full ring-1 ring-gray-800" />
+                  </div>
+                  {/* App screenshot */}
+                  <img 
+                    src="https://i.ibb.co/CK1Fz5zm/Screenshot-2026-03-25-at-10-53-08.png" 
+                    alt="iVital Care App" 
+                    className="w-full h-auto object-contain"
+                  />
+                  {/* Home indicator */}
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[120px] h-[4px] bg-black/30 rounded-full" />
+                </div>
+              </div>
             </div>
+            {/* Side button (power) */}
+            <div className="absolute top-[120px] -right-[1px] w-[3px] h-[50px] bg-gradient-to-b from-[#3a3a3e] to-[#2a2a2e] rounded-r-sm" />
+            {/* Volume buttons */}
+            <div className="absolute top-[100px] -left-[1px] w-[3px] h-[28px] bg-gradient-to-b from-[#3a3a3e] to-[#2a2a2e] rounded-l-sm" />
+            <div className="absolute top-[140px] -left-[1px] w-[3px] h-[28px] bg-gradient-to-b from-[#3a3a3e] to-[#2a2a2e] rounded-l-sm" />
           </div>
           <FloatingStatCard
             icon={<Activity size={24} />}
@@ -138,9 +158,9 @@ export const Projects = ({ onPageChange }: PageProps) => {
             <SectionHeader subtitle="Hợp tác chiến lược" title="Dành cho đối tác y tế" centered={false} subtitleColor="text-ivital-blue" />
             <div className="space-y-6">
               {partnerBenefits.map((benefit, idx) => (
-                <div key={idx} className="flex items-center gap-4 p-6 bg-ivital-dark text-white rounded-3xl">
+                <div key={idx} className="flex items-center gap-4 p-6 bg-gradient-to-r from-ivital-blue/10 to-ivital-pink/10 border border-ivital-blue/20 rounded-3xl">
                   <CheckCircle2 className="text-ivital-blue flex-shrink-0" size={24} />
-                  <p className="text-lg font-bold">{benefit}</p>
+                  <p className="text-lg font-bold text-ivital-dark">{benefit}</p>
                 </div>
               ))}
             </div>
@@ -155,7 +175,7 @@ export const Projects = ({ onPageChange }: PageProps) => {
             <SectionHeader subtitle="Dự án khác" title="Khám phá các giải pháp khác" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {otherProjects.map((project, idx) => (
               <motion.div 
                 key={idx}
@@ -166,7 +186,6 @@ export const Projects = ({ onPageChange }: PageProps) => {
                   src={project.image} 
                   alt={project.title} 
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ivital-dark/90 via-ivital-dark/20 to-transparent p-12 flex flex-col justify-end">
                   <div className="space-y-4">
