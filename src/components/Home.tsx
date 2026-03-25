@@ -20,13 +20,13 @@ const ecosystemPreviewItems = [
 
 const differentiators = [
   { title: 'Công nghệ hàng đầu', description: 'Ứng dụng những xu hướng công nghệ mới nhất thế giới.' },
-  { title: 'Đội ngũ chuyên gia', description: 'Sự kết hợp giữa các kỹ sư AI và bác sĩ đầu ngành.' },
+  { title: 'Đội ngũ chuyên gia', description: 'Sự kết hợp giữa các kỹ sư và bác sĩ đầu ngành.' },
   { title: 'Cá nhân hóa tối đa', description: 'Giải pháp được thiết kế riêng cho từng thể trạng.' },
 ];
 
 const projectShowcaseSmall = [
   { image: 'https://picsum.photos/seed/lab/1200/400', title: 'iVital Lab', description: 'Hệ thống xét nghiệm thông minh với kết quả được phân tích bởi AI.' },
-  { image: 'https://picsum.photos/seed/pharmacy/1200/400', title: 'iVital Pharmacy', description: 'Chuỗi nhà thuốc số hóa, giao hàng nhanh chóng và tư vấn tận tâm.' },
+  { image: 'https://picsum.photos/seed/pharmacy/1200/400', title: 'iVital BP', description: 'App theo dõi huyết áp và sức khỏe tim mạch' },
 ];
 
 export const Home = ({ onPageChange }: PageProps) => {
@@ -145,7 +145,7 @@ export const Home = ({ onPageChange }: PageProps) => {
                 <div className="space-y-4">
                   <span className="px-4 py-1 bg-ivital-pink text-white rounded-full text-xs font-bold uppercase tracking-wider">Ứng dụng di động</span>
                   <h4 className="text-4xl font-bold text-white">iVital Care</h4>
-                  <p className="text-gray-300 max-w-md">Trợ lý sức khỏe cá nhân toàn diện, kết nối bác sĩ và bệnh nhân mọi lúc mọi nơi.</p>
+                  <p className="text-gray-300 max-w-md">Trợ lý sức khỏe cá nhân toàn diện, kết nối điều dưỡng và bệnh nhân mọi lúc mọi nơi.</p>
                 </div>
               </div>
             </motion.div>
@@ -211,7 +211,7 @@ export const Home = ({ onPageChange }: PageProps) => {
                   <div className="text-center p-8">
                     <span className="text-6xl md:text-8xl font-black text-white opacity-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">V</span>
                     <h4 className="text-3xl md:text-5xl font-black text-white relative z-10">iVital</h4>
-                    <p className="text-white/80 font-bold mt-2 relative z-10">CORE AI</p>
+                    <p className="text-white/80 font-bold mt-2 relative z-10">CORE</p>
                   </div>
                 </div>
               </div>
@@ -250,12 +250,12 @@ export const Home = ({ onPageChange }: PageProps) => {
               <div className="space-y-6 pt-12">
                 <div className="bg-ivital-pink p-8 rounded-[2.5rem] text-white space-y-4">
                   <Users size={40} />
-                  <p className="text-4xl font-black">1M+</p>
+                  <p className="text-4xl font-black">10.000+</p>
                   <p className="font-bold opacity-80">Người dùng tin tưởng</p>
                 </div>
                 <div className="bg-ivital-light p-8 rounded-[2.5rem] space-y-4">
                   <Activity size={40} className="text-ivital-blue" />
-                  <p className="text-4xl font-black text-ivital-dark">500+</p>
+                  <p className="text-4xl font-black text-ivital-dark">50+</p>
                   <p className="font-bold text-ivital-gray">Đối tác y tế</p>
                 </div>
               </div>
@@ -263,7 +263,7 @@ export const Home = ({ onPageChange }: PageProps) => {
                 <div className="bg-ivital-dark p-8 rounded-[2.5rem] text-white space-y-4">
                   <ShieldCheck size={40} className="text-ivital-pink" />
                   <p className="text-4xl font-black">99%</p>
-                  <p className="font-bold opacity-80">Độ chính xác AI</p>
+                  <p className="font-bold opacity-80">Độ chính xác</p>
                 </div>
                 <div className="bg-ivital-blue p-8 rounded-[2.5rem] text-white space-y-4">
                   <Heart size={40} />
