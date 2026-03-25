@@ -15,7 +15,7 @@ const ecosystemPreviewItems = [
   { title: 'iVital Care', icon: <Smartphone size={24} />, description: 'App theo dõi sức khỏe' },
   { title: 'iVital AI', icon: <Zap size={24} />, description: 'Trợ lý ảo thông minh' },
   { title: 'iVital Lab', icon: <Activity size={24} />, description: 'Xét nghiệm công nghệ cao' },
-  { title: 'iVital Pharmacy', icon: <Heart size={24} />, description: 'Dược phẩm & Thực phẩm chức năng' },
+  { title: 'iVital BP', icon: <Heart size={24} />, description: 'Dược phẩm & Thực phẩm chức năng' },
 ];
 
 const differentiators = [
