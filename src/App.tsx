@@ -33,7 +33,7 @@ function FloatingHearts() {
   []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[5] overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {hearts.map((h) => (
         <motion.div
           key={h.id}
