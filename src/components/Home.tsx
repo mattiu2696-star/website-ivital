@@ -37,6 +37,69 @@ export const Home = ({ onPageChange }: PageProps) => {
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-ivital-pink/10 to-transparent -z-10 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-r from-ivital-blue/10 to-transparent -z-10 blur-3xl" />
 
+        {/* Floating circles */}
+        {[
+          { size: 300, top: '10%', left: '5%', color: 'rgba(255,107,157,0.08)', duration: 15 },
+          { size: 200, top: '60%', left: '15%', color: 'rgba(74,144,226,0.08)', duration: 18 },
+          { size: 400, top: '20%', right: '10%', color: 'rgba(168,85,247,0.06)', duration: 20 },
+          { size: 150, top: '70%', right: '20%', color: 'rgba(255,107,157,0.07)', duration: 12 },
+          { size: 250, top: '40%', left: '50%', color: 'rgba(74,144,226,0.05)', duration: 22 },
+        ].map((circle, i) => (
+          <motion.div
+            key={`circle-${i}`}
+            className="absolute rounded-full border -z-10"
+            style={{
+              width: circle.size,
+              height: circle.size,
+              top: circle.top,
+              left: circle.left,
+              right: (circle as any).right,
+              borderColor: circle.color,
+              background: circle.color,
+            }}
+            animate={{
+              y: [0, -25, 0, 20, 0],
+              x: [0, 15, 0, -15, 0],
+              scale: [1, 1.05, 1, 0.95, 1],
+            }}
+            transition={{
+              duration: circle.duration,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
+        {/* Floating ring outlines */}
+        {[
+          { size: 180, top: '15%', left: '20%', duration: 14 },
+          { size: 120, top: '55%', right: '8%', duration: 10 },
+          { size: 280, top: '65%', left: '40%', duration: 16 },
+        ].map((ring, i) => (
+          <motion.div
+            key={`ring-${i}`}
+            className="absolute rounded-full -z-10"
+            style={{
+              width: ring.size,
+              height: ring.size,
+              top: ring.top,
+              left: (ring as any).left,
+              right: (ring as any).right,
+              border: '1.5px solid',
+              borderColor: i % 2 === 0 ? 'rgba(255,107,157,0.12)' : 'rgba(74,144,226,0.12)',
+            }}
+            animate={{
+              y: [0, -20, 0, 15, 0],
+              rotate: [0, 180, 360],
+              scale: [1, 1.08, 1],
+            }}
+            transition={{
+              duration: ring.duration,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
+
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
