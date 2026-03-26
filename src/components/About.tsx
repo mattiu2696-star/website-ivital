@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Target, Eye, Heart, Award, Users, Globe, ShieldCheck, Activity, Zap } from 'lucide-react';
 import { PageProps } from '../types';
@@ -161,9 +162,9 @@ export const About = ({ onPageChange }: PageProps) => {
         title={<>Cùng iVital xây dựng <br /> cộng đồng khỏe mạnh</>}
         description="Chúng tôi luôn chào đón những đối tác và nhân tài có cùng khát vọng thay đổi tương lai y tế."
       >
-        <button onClick={() => onPageChange('contact')} className="px-10 py-5 bg-white text-ivital-blue rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
+        <Link to="/contact" className="px-10 py-5 bg-white text-ivital-blue rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
           Liên hệ hợp tác
-        </button>
+        </Link>
       </CallToActionBanner>
     </div>
   );

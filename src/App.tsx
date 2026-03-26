@@ -1,4 +1,5 @@
-import { useState, useEffect, FC, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { Navbar, Footer } from './components/Layout';
 import { Home } from './components/Home';
 import { About } from './components/About';
@@ -8,12 +9,20 @@ import { Contact } from './components/Contact';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 
-const pageComponents: Record<Page, FC<{ onPageChange: (page: Page) => void }>> = {
-  home: Home,
-  about: About,
-  projects: Projects,
-  ecosystem: Ecosystem,
-  contact: Contact,
+const pageToPath: Record<Page, string> = {
+  home: '/',
+  about: '/about',
+  projects: '/projects',
+  ecosystem: '/ecosystem',
+  contact: '/contact',
+};
+
+const pathToPage: Record<string, Page> = {
+  '/': 'home',
+  '/about': 'about',
+  '/projects': 'projects',
+  '/ecosystem': 'ecosystem',
+  '/contact': 'contact',
 };
 
 const heartColors = ['#FF6B9D', '#4A90E2', '#a855f7', '#f472b6', '#60a5fa'];
@@ -61,19 +70,23 @@ function FloatingHearts() {
   );
 }
 
-export default function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('home');
+function AppContent() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currentPage = pathToPage[location.pathname] || 'home';
+
+  const onPageChange = (page: Page) => {
+    navigate(pageToPath[page]);
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage]);
-
-  const PageComponent = pageComponents[currentPage];
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen flex flex-col">
       <FloatingHearts />
-      <Navbar currentPage={currentPage} onPageChange={setCurrentPage} />
+      <Navbar currentPage={currentPage} onPageChange={onPageChange} />
       
       <main className="flex-grow">
         <AnimatePresence mode="wait">
@@ -84,12 +97,26 @@ export default function App() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
           >
-            <PageComponent onPageChange={setCurrentPage} />
+            <Routes location={location}>
+              <Route path="/" element={<Home onPageChange={onPageChange} />} />
+              <Route path="/about" element={<About onPageChange={onPageChange} />} />
+              <Route path="/projects" element={<Projects onPageChange={onPageChange} />} />
+              <Route path="/ecosystem" element={<Ecosystem onPageChange={onPageChange} />} />
+              <Route path="/contact" element={<Contact onPageChange={onPageChange} />} />
+            </Routes>
           </motion.div>
         </AnimatePresence>
       </main>
 
-      <Footer onPageChange={setCurrentPage} />
+      <Footer onPageChange={onPageChange} />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }

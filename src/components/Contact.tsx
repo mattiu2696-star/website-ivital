@@ -1,5 +1,7 @@
+import { useState, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, MessageCircle, Globe, Users, Building2, ArrowRight } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { Mail, Phone, MapPin, Send, MessageCircle, Globe, Users, Building2, ArrowRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { PageProps } from '../types';
 
 const contactChannels = [
@@ -16,6 +18,33 @@ const partnerTypes = [
 ];
 
 export const Contact = (_props: PageProps) => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    setSending(true);
+    setStatus('idle');
+
+    try {
+      await emailjs.sendForm(
+        'service_48d6rnr',
+        'template_etp045m',
+        formRef.current,
+        'iYduyRsbVU8wI-PA4'
+      );
+      setStatus('success');
+      formRef.current.reset();
+    } catch {
+      setStatus('error');
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <div className="pt-24">
       {/* Contact Hero */}
@@ -46,12 +75,14 @@ export const Contact = (_props: PageProps) => {
               <p className="text-ivital-gray text-lg">Điền thông tin vào form bên dưới, đội ngũ iVital sẽ phản hồi bạn sớm nhất có thể.</p>
             </div>
 
-            <form className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-ivital-dark uppercase tracking-wider">Họ và tên</label>
                   <input 
-                    type="text" 
+                    type="text"
+                    name="from_name"
+                    required
                     placeholder="Nguyễn Văn A" 
                     className="w-full px-6 py-4 bg-ivital-light border border-gray-200 rounded-2xl focus:outline-none focus:border-ivital-pink transition-colors"
                   />
@@ -59,7 +90,9 @@ export const Contact = (_props: PageProps) => {
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-ivital-dark uppercase tracking-wider">Email</label>
                   <input 
-                    type="email" 
+                    type="email"
+                    name="from_email"
+                    required
                     placeholder="example@gmail.com" 
                     className="w-full px-6 py-4 bg-ivital-light border border-gray-200 rounded-2xl focus:outline-none focus:border-ivital-pink transition-colors"
                   />
@@ -67,7 +100,7 @@ export const Contact = (_props: PageProps) => {
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-bold text-ivital-dark uppercase tracking-wider">Chủ đề</label>
-                <select className="w-full px-6 py-4 bg-ivital-light border border-gray-200 rounded-2xl focus:outline-none focus:border-ivital-pink transition-colors appearance-none">
+                <select name="subject" className="w-full px-6 py-4 bg-ivital-light border border-gray-200 rounded-2xl focus:outline-none focus:border-ivital-pink transition-colors appearance-none">
                   <option>Hợp tác kinh doanh</option>
                   <option>Hỗ trợ kỹ thuật</option>
                   <option>Tuyển dụng</option>
@@ -77,13 +110,37 @@ export const Contact = (_props: PageProps) => {
               <div className="space-y-2">
                 <label className="text-sm font-bold text-ivital-dark uppercase tracking-wider">Tin nhắn</label>
                 <textarea 
-                  rows={5} 
+                  rows={5}
+                  name="message"
+                  required
                   placeholder="Nhập nội dung tin nhắn của bạn..." 
                   className="w-full px-6 py-4 bg-ivital-light border border-gray-200 rounded-2xl focus:outline-none focus:border-ivital-pink transition-colors resize-none"
                 ></textarea>
               </div>
-              <button className="btn-primary w-full py-5 flex items-center justify-center gap-3 text-lg">
-                Gửi tin nhắn <Send size={20} />
+
+              {status === 'success' && (
+                <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-2xl text-green-700">
+                  <CheckCircle2 size={20} />
+                  <span className="font-semibold">Gửi thành công! Chúng tôi sẽ phản hồi bạn sớm nhất có thể.</span>
+                </div>
+              )}
+              {status === 'error' && (
+                <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700">
+                  <AlertCircle size={20} />
+                  <span className="font-semibold">Gửi thất bại. Vui lòng thử lại hoặc liên hệ qua email trực tiếp.</span>
+                </div>
+              )}
+
+              <button 
+                type="submit" 
+                disabled={sending}
+                className="btn-primary w-full py-5 flex items-center justify-center gap-3 text-lg disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {sending ? (
+                  <>Đang gửi... <Loader2 size={20} className="animate-spin" /></>
+                ) : (
+                  <>Gửi tin nhắn <Send size={20} /></>
+                )}
               </button>
             </form>
           </div>

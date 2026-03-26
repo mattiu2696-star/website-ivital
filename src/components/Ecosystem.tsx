@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Smartphone, Zap, Activity, Heart, ShieldCheck, Database, Globe, CheckCircle2 } from 'lucide-react';
 import { PageProps } from '../types';
@@ -167,12 +168,12 @@ export const Ecosystem = ({ onPageChange }: PageProps) => {
         title={<>Sẵn sàng kết nối cùng <br /> hệ sinh thái iVital?</>}
         description="Chúng tôi luôn sẵn sàng hỗ trợ bạn trên hành trình chăm sóc sức khỏe toàn diện."
       >
-        <button onClick={() => onPageChange('contact')} className="px-10 py-5 bg-white text-ivital-pink rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
+        <Link to="/contact" className="px-10 py-5 bg-white text-ivital-pink rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
           Liên hệ ngay
-        </button>
-        <button onClick={() => onPageChange('projects')} className="px-10 py-5 bg-ivital-dark text-white rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
+        </Link>
+        <Link to="/projects" className="px-10 py-5 bg-ivital-dark text-white rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
           Xem các dự án
-        </button>
+        </Link>
       </CallToActionBanner>
     </div>
   );

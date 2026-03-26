@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X, ChevronRight, HeartPulse } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Page, NavItem } from '../types';
+
+const pageToPath: Record<Page, string> = {
+  home: '/',
+  about: '/about',
+  projects: '/projects',
+  ecosystem: '/ecosystem',
+  contact: '/contact',
+};
 
 interface NavbarProps {
   currentPage: Page;
@@ -36,9 +45,9 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <div 
-          className="flex items-center gap-2 cursor-pointer group"
-          onClick={() => onPageChange('home')}
+        <Link 
+          to="/"
+          className="flex items-center gap-2 group"
         >
           <div className="w-10 h-10 bg-gradient-to-br from-ivital-pink to-ivital-blue rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
             <HeartPulse className="w-6 h-6" />
@@ -46,27 +55,27 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
           <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-ivital-pink to-ivital-blue bg-clip-text text-transparent">
             iVital Technology
           </span>
-        </div>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => (
-            <button
+            <Link
               key={item.id}
-              onClick={() => onPageChange(item.id)}
+              to={pageToPath[item.id]}
               className={`text-sm font-semibold transition-colors hover:text-ivital-pink ${
                 currentPage === item.id ? 'text-ivital-pink' : 'text-ivital-dark/70'
               }`}
             >
               {item.label}
-            </button>
+            </Link>
           ))}
-          <button 
-            onClick={() => onPageChange('contact')}
+          <Link 
+            to="/contact"
             className="btn-primary flex items-center gap-2 text-sm"
           >
             Liên hệ <ChevronRight size={16} />
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -89,28 +98,24 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
           >
             <div className="flex flex-col p-6 gap-4">
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.id}
-                  onClick={() => {
-                    onPageChange(item.id);
-                    setIsMobileMenuOpen(false);
-                  }}
+                  to={pageToPath[item.id]}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className={`text-lg font-semibold text-left py-2 ${
                     currentPage === item.id ? 'text-ivital-pink' : 'text-ivital-dark'
                   }`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
-              <button 
-                onClick={() => {
-                  onPageChange('contact');
-                  setIsMobileMenuOpen(false);
-                }}
-                className="btn-primary w-full mt-4"
+              <Link 
+                to="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="btn-primary w-full mt-4 text-center"
               >
                 Liên hệ ngay
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}
@@ -142,12 +147,12 @@ export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void })
           <ul className="space-y-4 text-gray-400">
             {navItems.map((item) => (
               <li key={item.id}>
-                <button 
-                  onClick={() => onPageChange(item.id)}
+                <Link 
+                  to={pageToPath[item.id]}
                   className="hover:text-ivital-pink transition-colors"
                 >
                   {item.label}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>

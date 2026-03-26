@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, useMotionValue, useTransform, useSpring } from 'motion/react';
 import { ArrowRight, Activity, ShieldCheck, Zap, Heart, Database, Smartphone, Users } from 'lucide-react';
 import { PageProps } from '../types';
@@ -31,6 +32,7 @@ const projectShowcaseSmall = [
 ];
 
 export const Home = ({ onPageChange }: PageProps) => {
+  const navigate = useNavigate();
   const heroRef = useRef<HTMLElement>(null);
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
@@ -179,12 +181,12 @@ export const Home = ({ onPageChange }: PageProps) => {
             transition={{ duration: 1.4, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-wrap gap-4 pt-4"
           >
-            <button onClick={() => onPageChange('ecosystem')} className="btn-primary flex items-center gap-2">
+            <Link to="/ecosystem" className="btn-primary flex items-center gap-2">
               Khám phá hệ sinh thái <ArrowRight size={20} />
-            </button>
-            <button onClick={() => onPageChange('about')} className="btn-outline">
+            </Link>
+            <Link to="/about" className="btn-outline">
               Về chúng tôi
-            </button>
+            </Link>
           </motion.div>
         </div>
 
@@ -255,16 +257,16 @@ export const Home = ({ onPageChange }: PageProps) => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
             <SectionHeader subtitle="Dự án trọng điểm" title="Những giải pháp thay đổi cuộc sống" centered={false} />
-            <button onClick={() => onPageChange('projects')} className="btn-outline flex items-center gap-2">
+            <Link to="/projects" className="btn-outline flex items-center gap-2">
               Xem tất cả dự án <ArrowRight size={18} />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <motion.div 
               whileHover={{ scale: 1.02 }}
               className="group relative h-[500px] rounded-[3rem] overflow-hidden cursor-pointer shadow-lg"
-              onClick={() => onPageChange('projects')}
+              onClick={() => navigate('/projects')}
             >
               <img 
                 src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80" 
@@ -424,12 +426,12 @@ export const Home = ({ onPageChange }: PageProps) => {
         title={<>Sẵn sàng để bắt đầu <br /> hành trình sức khỏe?</>}
         description="Hãy để iVital cùng bạn kiến tạo một cuộc sống khỏe mạnh và hạnh phúc hơn mỗi ngày."
       >
-        <button onClick={() => onPageChange('contact')} className="px-10 py-5 bg-white text-ivital-pink rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
+        <Link to="/contact" className="px-10 py-5 bg-white text-ivital-pink rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
           Hợp tác cùng iVital
-        </button>
-        <button onClick={() => onPageChange('ecosystem')} className="px-10 py-5 bg-ivital-dark text-white rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
+        </Link>
+        <Link to="/ecosystem" className="px-10 py-5 bg-ivital-dark text-white rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
           Khám phá thêm
-        </button>
+        </Link>
       </CallToActionBanner>
     </div>
   );
