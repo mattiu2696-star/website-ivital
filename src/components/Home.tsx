@@ -34,44 +34,72 @@ export const Home = ({ onPageChange }: PageProps) => {
     <div className="pt-24">
       {/* Hero Section */}
       <section className="section-padding min-h-[90vh] flex items-center justify-center relative overflow-hidden">
-        {/* Background Video */}
-        <div className="absolute inset-0 -z-20">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source src="https://videos.pexels.com/video-files/7579955/7579955-uhd_2560_1440_30fps.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-white/85 backdrop-blur-sm" />
-        </div>
+        {/* Animated grid background */}
+        <div className="absolute inset-0 -z-20 hero-grid opacity-[0.03]" />
 
-        {/* Animated background blobs */}
+        {/* Floating gradient orbs */}
         <motion.div
-          className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ivital-pink/15 rounded-full -z-10 blur-3xl"
+          className="absolute -top-20 -right-20 w-[600px] h-[600px] rounded-full -z-10"
+          style={{ background: 'radial-gradient(circle, rgba(255,107,157,0.2) 0%, transparent 70%)' }}
           animate={{
             scale: [1, 1.2, 1],
-            x: [0, 30, 0],
-            y: [0, -20, 0],
+            x: [0, 40, 0],
+            y: [0, -30, 0],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-ivital-blue/15 rounded-full -z-10 blur-3xl"
+          className="absolute -bottom-32 -left-20 w-[500px] h-[500px] rounded-full -z-10"
+          style={{ background: 'radial-gradient(circle, rgba(74,144,226,0.2) 0%, transparent 70%)' }}
           animate={{
             scale: [1, 1.3, 1],
-            x: [0, -25, 0],
-            y: [0, 25, 0],
+            x: [0, -30, 0],
+            y: [0, 35, 0],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-br from-ivital-pink/5 to-ivital-blue/5 rounded-full -z-10 blur-3xl"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[400px] rounded-full -z-10"
+          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)' }}
+          animate={{
+            scale: [1, 1.15, 1],
+            y: [0, -20, 0],
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         />
+
+        {/* Pulse rings */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10">
+          {[700, 500, 300].map((size, i) => (
+            <motion.div
+              key={size}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-ivital-pink/10"
+              style={{ width: size, height: size }}
+              animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 4 + i * 2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.8 }}
+            />
+          ))}
+        </div>
+
+        {/* Floating particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={`particle-${i}`}
+            className="absolute w-2 h-2 rounded-full -z-10"
+            style={{
+              background: i % 2 === 0 ? '#FF6B9D' : '#4A90E2',
+              left: `${15 + i * 14}%`,
+              top: `${20 + (i % 3) * 25}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, i % 2 === 0 ? 15 : -15, 0],
+              opacity: [0.3, 0.7, 0.3],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{ duration: 3 + i * 0.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
+          />
+        ))}
 
         <div className="text-center space-y-8 max-w-4xl mx-auto relative z-10">
           <motion.div

@@ -58,3 +58,11 @@
   background-size: 200% 200%;
   animation: gradient-shift 4s ease-in-out infinite;
 }
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255,107,157,0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,144,226,0.5) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 100%);
+}
