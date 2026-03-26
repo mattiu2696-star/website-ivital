@@ -265,6 +265,77 @@ export const vi = {
     description: 'Trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.',
     backHome: 'Về trang chủ',
   },
+
+  // iVital Care service page
+  ivitalCare: {
+    heroBadge: 'Dịch vụ điều dưỡng',
+    heroDescription: 'Ứng dụng đặt điều dưỡng chăm sóc sức khỏe tại nhà hàng đầu Việt Nam. Kết nối bạn với đội ngũ điều dưỡng chuyên nghiệp chỉ trong vài phút.',
+    heroDownload: 'Tải ứng dụng ngay',
+    heroDemo: 'Xem demo',
+    statNurse: 'Điều dưỡng',
+    statNurseValue: '500+',
+    statSatisfaction: 'Hài lòng',
+
+    aboutSubtitle: 'Giới thiệu dịch vụ',
+    aboutTitle: 'iVital Care là gì?',
+    aboutDescription: 'Nền tảng kết nối điều dưỡng và bệnh nhân, giúp bạn dễ dàng đặt lịch chăm sóc sức khỏe tại nhà với đội ngũ chuyên nghiệp, đáng tin cậy.',
+    features: [
+      { title: 'Kết nối điều dưỡng', description: 'Tìm và kết nối với điều dưỡng phù hợp gần bạn nhất trong vài phút.' },
+      { title: 'Đặt lịch linh hoạt', description: 'Chọn thời gian, địa điểm và loại dịch vụ chăm sóc phù hợp với nhu cầu.' },
+      { title: 'Hồ sơ sức khỏe số', description: 'Lưu trữ toàn bộ lịch sử chăm sóc, đơn thuốc và kết quả xét nghiệm.' },
+      { title: 'Hỗ trợ 24/7', description: 'Đội ngũ tư vấn y tế luôn sẵn sàng hỗ trợ bạn mọi lúc mọi nơi.' },
+    ],
+
+    howSubtitle: 'Quy trình sử dụng',
+    howTitle: 'Sử dụng đơn giản, hiệu quả tức thì',
+    howDescription: 'Chỉ 4 bước đơn giản để được chăm sóc sức khỏe tại nhà bởi đội ngũ điều dưỡng chuyên nghiệp.',
+    steps: [
+      { title: 'Tải ứng dụng', description: 'Tải iVital Care miễn phí trên App Store hoặc Google Play.' },
+      { title: 'Chọn dịch vụ', description: 'Chọn loại chăm sóc bạn cần: tiêm, truyền dịch, chăm sóc vết thương,...' },
+      { title: 'Đặt lịch hẹn', description: 'Chọn thời gian, địa điểm phù hợp. Hệ thống sẽ ghép cặp điều dưỡng cho bạn.' },
+      { title: 'Nhận chăm sóc', description: 'Điều dưỡng đến tận nơi phục vụ. Theo dõi quá trình qua ứng dụng.' },
+    ],
+
+    highlightSubtitle: 'Tại sao chọn chúng tôi',
+    highlightTitle: 'Cam kết chất lượng dịch vụ',
+    highlights: [
+      { title: 'Điều dưỡng được xác minh', description: 'Tất cả điều dưỡng đều có chứng chỉ hành nghề, được đào tạo và xác minh kỹ lưỡng.' },
+      { title: 'Phản hồi nhanh chóng', description: 'Thời gian kết nối trung bình chỉ 15 phút, phục vụ 24/7 kể cả ngày lễ.' },
+      { title: 'Đánh giá minh bạch', description: 'Hệ thống đánh giá 5 sao giúp bạn lựa chọn điều dưỡng phù hợp nhất.' },
+      { title: 'Phục vụ tại nhà', description: 'Không cần di chuyển, điều dưỡng đến tận địa chỉ của bạn trên toàn quốc.' },
+    ],
+
+    trustNurses: '500+',
+    trustNursesLabel: 'Điều dưỡng chuyên nghiệp',
+
+    packagesSubtitle: 'Gói dịch vụ',
+    packagesTitle: 'Lựa chọn phù hợp cho bạn',
+    popularTag: 'Phổ biến nhất',
+    packages: [
+      {
+        name: 'Cơ bản',
+        description: 'Phù hợp cho chăm sóc đơn giản tại nhà.',
+        features: ['Tiêm thuốc theo đơn', 'Đo huyết áp, đường huyết', 'Thay băng vết thương', 'Hỗ trợ qua chat'],
+      },
+      {
+        name: 'Nâng cao',
+        description: 'Chăm sóc toàn diện cho bệnh nhân dài hạn.',
+        features: ['Tất cả gói Cơ bản', 'Truyền dịch tại nhà', 'Chăm sóc sau phẫu thuật', 'Tư vấn dinh dưỡng', 'Điều dưỡng riêng 24/7'],
+      },
+      {
+        name: 'Doanh nghiệp',
+        description: 'Giải pháp y tế cho tổ chức và doanh nghiệp.',
+        features: ['Khám sức khỏe định kỳ', 'Y tế tại chỗ cho sự kiện', 'Dashboard quản lý', 'Hợp đồng linh hoạt'],
+      },
+    ],
+    packageCta: 'Bắt đầu ngay',
+
+    ctaTitle: 'Chăm sóc sức khỏe tại nhà chưa bao giờ dễ dàng đến thế',
+    ctaDescription: 'Tải iVital Care ngay hôm nay và trải nghiệm dịch vụ điều dưỡng chuyên nghiệp tận nơi.',
+    ctaDownloadIos: 'Tải cho iOS',
+    ctaDownloadAndroid: 'Tải cho Android',
+    ctaContact: 'Liên hệ tư vấn',
+  },
 } as const;
 
 export type Translations = typeof vi;

@@ -7,6 +7,7 @@ import { Projects } from './components/Projects';
 import { Ecosystem } from './components/Ecosystem';
 import { Contact } from './components/Contact';
 import { NotFound } from './components/NotFound';
+import { IVitalCare } from './components/IVitalCare';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 import { LanguageProvider } from './i18n/LanguageContext';
@@ -105,6 +106,7 @@ function AppContent() {
               <Route path="/projects" element={<Projects onPageChange={onPageChange} />} />
               <Route path="/ecosystem" element={<Ecosystem onPageChange={onPageChange} />} />
               <Route path="/contact" element={<Contact onPageChange={onPageChange} />} />
+              <Route path="/ivital-care" element={<IVitalCare />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </motion.div>

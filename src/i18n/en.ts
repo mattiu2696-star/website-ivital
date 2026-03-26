@@ -267,4 +267,75 @@ export const en: Translations = {
     description: 'The page you are looking for does not exist or has been moved.',
     backHome: 'Back to Home',
   },
+
+  // iVital Care service page
+  ivitalCare: {
+    heroBadge: 'Nursing Services',
+    heroDescription: 'Vietnam\'s leading home healthcare nursing app. Connect with professional nurses in just minutes.',
+    heroDownload: 'Download Now',
+    heroDemo: 'View Demo',
+    statNurse: 'Nurses',
+    statNurseValue: '500+',
+    statSatisfaction: 'Satisfaction',
+
+    aboutSubtitle: 'About the Service',
+    aboutTitle: 'What is iVital Care?',
+    aboutDescription: 'A platform connecting nurses and patients, making it easy to book professional and reliable home healthcare services.',
+    features: [
+      { title: 'Connect with Nurses', description: 'Find and connect with the nearest qualified nurse in just minutes.' },
+      { title: 'Flexible Scheduling', description: 'Choose the time, location, and type of care that fits your needs.' },
+      { title: 'Digital Health Records', description: 'Store your complete care history, prescriptions, and test results.' },
+      { title: '24/7 Support', description: 'Our medical support team is always ready to help you anytime, anywhere.' },
+    ],
+
+    howSubtitle: 'How It Works',
+    howTitle: 'Simple to Use, Instant Results',
+    howDescription: 'Just 4 simple steps to receive professional home nursing care.',
+    steps: [
+      { title: 'Download the App', description: 'Download iVital Care for free on the App Store or Google Play.' },
+      { title: 'Choose a Service', description: 'Select the care you need: injections, IV drips, wound care, and more.' },
+      { title: 'Book an Appointment', description: 'Pick a time and location. The system will match you with a nurse.' },
+      { title: 'Receive Care', description: 'The nurse comes to your location. Track the process through the app.' },
+    ],
+
+    highlightSubtitle: 'Why Choose Us',
+    highlightTitle: 'Committed to Service Quality',
+    highlights: [
+      { title: 'Verified Nurses', description: 'All nurses are licensed, trained, and thoroughly verified.' },
+      { title: 'Fast Response', description: 'Average connection time of just 15 minutes, available 24/7 including holidays.' },
+      { title: 'Transparent Reviews', description: '5-star rating system helps you choose the best-suited nurse.' },
+      { title: 'Home Service', description: 'No need to travel — nurses come to your address nationwide.' },
+    ],
+
+    trustNurses: '500+',
+    trustNursesLabel: 'Professional Nurses',
+
+    packagesSubtitle: 'Service Plans',
+    packagesTitle: 'The Right Plan for You',
+    popularTag: 'Most Popular',
+    packages: [
+      {
+        name: 'Basic',
+        description: 'Suitable for simple home care needs.',
+        features: ['Prescribed injections', 'Blood pressure & glucose checks', 'Wound dressing', 'Chat support'],
+      },
+      {
+        name: 'Advanced',
+        description: 'Comprehensive care for long-term patients.',
+        features: ['Everything in Basic', 'Home IV drips', 'Post-surgery care', 'Nutrition consulting', 'Dedicated nurse 24/7'],
+      },
+      {
+        name: 'Enterprise',
+        description: 'Healthcare solutions for organizations.',
+        features: ['Regular health checkups', 'On-site medical for events', 'Management dashboard', 'Flexible contracts'],
+      },
+    ],
+    packageCta: 'Get Started',
+
+    ctaTitle: 'Home healthcare has never been this easy',
+    ctaDescription: 'Download iVital Care today and experience professional nursing services at your doorstep.',
+    ctaDownloadIos: 'Download for iOS',
+    ctaDownloadAndroid: 'Download for Android',
+    ctaContact: 'Contact Us',
+  },
 };

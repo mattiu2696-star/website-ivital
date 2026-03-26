@@ -184,7 +184,7 @@ export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void })
         <div>
           <h4 className="text-lg font-bold mb-6">{t.footer.services}</h4>
           <ul className="space-y-4 text-gray-400">
-            <li><button className="hover:text-ivital-pink transition-colors text-left">iVital Care</button></li>
+            <li><Link to="/ivital-care" className="hover:text-ivital-pink transition-colors">iVital Care</Link></li>
             <li><button className="hover:text-ivital-pink transition-colors text-left">iVital AI</button></li>
             <li><button className="hover:text-ivital-pink transition-colors text-left">iVital Lab</button></li>
             <li><button className="hover:text-ivital-pink transition-colors text-left">iVital BP</button></li>
