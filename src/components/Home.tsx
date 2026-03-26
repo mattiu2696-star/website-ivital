@@ -1,4 +1,5 @@
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useTransform, useSpring } from 'motion/react';
 import { ArrowRight, Activity, ShieldCheck, Zap, Heart, Database, Smartphone, Users } from 'lucide-react';
 import { PageProps } from '../types';
 import { SectionHeader } from './ui/SectionHeader';
@@ -30,20 +31,56 @@ const projectShowcaseSmall = [
 ];
 
 export const Home = ({ onPageChange }: PageProps) => {
+  const heroRef = useRef<HTMLElement>(null);
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+
+  const springConfig = { stiffness: 100, damping: 30, mass: 0.5 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  // 3D tilt for image card
+  const rotateX = useTransform(smoothY, [0, 1], [8, -8]);
+  const rotateY = useTransform(smoothX, [0, 1], [-8, 8]);
+
+  // Parallax offsets for floating elements
+  const parallax1X = useTransform(smoothX, [0, 1], [-20, 20]);
+  const parallax1Y = useTransform(smoothY, [0, 1], [-15, 15]);
+  const parallax2X = useTransform(smoothX, [0, 1], [15, -15]);
+  const parallax2Y = useTransform(smoothY, [0, 1], [10, -10]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width);
+    mouseY.set((e.clientY - rect.top) / rect.height);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0.5);
+    mouseY.set(0.5);
+  };
+
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="section-padding flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden">
+      <section
+        ref={heroRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="section-padding flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden"
+        style={{ perspective: '1200px' }}
+      >
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-ivital-pink/10 to-transparent -z-10 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-r from-ivital-blue/10 to-transparent -z-10 blur-3xl" />
 
-        {/* Floating circles */}
+        {/* 3D Floating circles */}
         {[
-          { size: 300, top: '10%', left: '5%', color: 'rgba(255,107,157,0.08)', duration: 15 },
-          { size: 200, top: '60%', left: '15%', color: 'rgba(74,144,226,0.08)', duration: 18 },
-          { size: 400, top: '20%', right: '10%', color: 'rgba(168,85,247,0.06)', duration: 20 },
-          { size: 150, top: '70%', right: '20%', color: 'rgba(255,107,157,0.07)', duration: 12 },
-          { size: 250, top: '40%', left: '50%', color: 'rgba(74,144,226,0.05)', duration: 22 },
+          { size: 300, top: '10%', left: '5%', color: 'rgba(255,107,157,0.08)', duration: 15, rotateEnd: 20 },
+          { size: 200, top: '60%', left: '15%', color: 'rgba(74,144,226,0.08)', duration: 18, rotateEnd: -15 },
+          { size: 400, top: '20%', right: '10%', color: 'rgba(168,85,247,0.06)', duration: 20, rotateEnd: 25 },
+          { size: 150, top: '70%', right: '20%', color: 'rgba(255,107,157,0.07)', duration: 12, rotateEnd: -20 },
+          { size: 250, top: '40%', left: '50%', color: 'rgba(74,144,226,0.05)', duration: 22, rotateEnd: 15 },
         ].map((circle, i) => (
           <motion.div
             key={`circle-${i}`}
@@ -56,10 +93,12 @@ export const Home = ({ onPageChange }: PageProps) => {
               right: (circle as any).right,
               borderColor: circle.color,
               background: circle.color,
+              x: i % 2 === 0 ? parallax1X : parallax2X,
+              y: i % 2 === 0 ? parallax1Y : parallax2Y,
             }}
             animate={{
-              y: [0, -25, 0, 20, 0],
-              x: [0, 15, 0, -15, 0],
+              rotateX: [0, circle.rotateEnd, 0],
+              rotateY: [0, -circle.rotateEnd, 0],
               scale: [1, 1.05, 1, 0.95, 1],
             }}
             transition={{
@@ -69,7 +108,7 @@ export const Home = ({ onPageChange }: PageProps) => {
             }}
           />
         ))}
-        {/* Floating ring outlines */}
+        {/* 3D Floating ring outlines */}
         {[
           { size: 180, top: '15%', left: '20%', duration: 14 },
           { size: 120, top: '55%', right: '8%', duration: 10 },
@@ -86,11 +125,13 @@ export const Home = ({ onPageChange }: PageProps) => {
               right: (ring as any).right,
               border: '1.5px solid',
               borderColor: i % 2 === 0 ? 'rgba(255,107,157,0.12)' : 'rgba(74,144,226,0.12)',
+              x: i % 2 === 0 ? parallax2X : parallax1X,
+              y: i % 2 === 0 ? parallax2Y : parallax1Y,
             }}
             animate={{
-              y: [0, -20, 0, 15, 0],
+              rotateX: [0, 40, 0, -40, 0],
+              rotateY: [0, -30, 0, 30, 0],
               rotate: [0, 180, 360],
-              scale: [1, 1.08, 1],
             }}
             transition={{
               duration: ring.duration,
@@ -105,6 +146,7 @@ export const Home = ({ onPageChange }: PageProps) => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           className="flex-1 space-y-8"
+          style={{ x: parallax2X }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold animate-float">
             <Activity size={16} /> Tiên phong công nghệ y tế
@@ -131,29 +173,46 @@ export const Home = ({ onPageChange }: PageProps) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
           className="flex-1 relative"
+          style={{ transformStyle: 'preserve-3d' }}
         >
-          <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
+          <motion.div
+            className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white"
+            style={{
+              rotateX,
+              rotateY,
+              transformStyle: 'preserve-3d',
+            }}
+          >
             <img 
               src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80" 
               alt="Health Tech" 
               className="w-full h-auto object-cover"
             />
-          </div>
-          <FloatingStatCard
-            icon={<ShieldCheck size={24} />}
-            iconClassName="bg-green-100 text-green-600"
-            label="Bảo mật"
-            value="100% An toàn"
+            <div className="absolute inset-0 bg-gradient-to-tr from-ivital-pink/10 to-transparent pointer-events-none" />
+          </motion.div>
+          <motion.div
             className="absolute -top-10 -right-10"
-          />
-          <FloatingStatCard
-            icon={<Activity size={24} />}
-            iconClassName="bg-blue-100 text-blue-600"
-            label="Theo dõi"
-            value="Thời gian thực"
+            style={{ x: parallax1X, y: parallax1Y, translateZ: 60 }}
+          >
+            <FloatingStatCard
+              icon={<ShieldCheck size={24} />}
+              iconClassName="bg-green-100 text-green-600"
+              label="Bảo mật"
+              value="100% An toàn"
+            />
+          </motion.div>
+          <motion.div
             className="absolute -bottom-10 -left-10"
-            style={{ animationDelay: '1.5s' }}
-          />
+            style={{ x: parallax2X, y: parallax2Y, translateZ: 40 }}
+          >
+            <FloatingStatCard
+              icon={<Activity size={24} />}
+              iconClassName="bg-blue-100 text-blue-600"
+              label="Theo dõi"
+              value="Thời gian thực"
+              style={{ animationDelay: '1.5s' }}
+            />
+          </motion.div>
         </motion.div>
       </section>
 
