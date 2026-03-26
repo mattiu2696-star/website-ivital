@@ -74,71 +74,73 @@ export const Home = ({ onPageChange }: PageProps) => {
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-ivital-pink/10 to-transparent -z-10 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-r from-ivital-blue/10 to-transparent -z-10 blur-3xl" />
 
-        {/* 3D Floating circles */}
+        {/* 3D Floating Hearts */}
         {[
-          { size: 300, top: '10%', left: '5%', color: 'rgba(255,107,157,0.08)', duration: 15, rotateEnd: 20 },
-          { size: 200, top: '60%', left: '15%', color: 'rgba(74,144,226,0.08)', duration: 18, rotateEnd: -15 },
-          { size: 400, top: '20%', right: '10%', color: 'rgba(168,85,247,0.06)', duration: 20, rotateEnd: 25 },
-          { size: 150, top: '70%', right: '20%', color: 'rgba(255,107,157,0.07)', duration: 12, rotateEnd: -20 },
-          { size: 250, top: '40%', left: '50%', color: 'rgba(74,144,226,0.05)', duration: 22, rotateEnd: 15 },
-        ].map((circle, i) => (
+          { size: 60, top: '8%', left: '6%', color: '#FF6B9D', opacity: 0.18, duration: 14, rotateEnd: 20 },
+          { size: 35, top: '25%', left: '18%', color: '#4A90E2', opacity: 0.15, duration: 18, rotateEnd: -15 },
+          { size: 80, top: '15%', right: '12%', color: '#FF6B9D', opacity: 0.12, duration: 20, rotateEnd: 25 },
+          { size: 28, top: '68%', right: '22%', color: '#a855f7', opacity: 0.16, duration: 12, rotateEnd: -20 },
+          { size: 50, top: '55%', left: '8%', color: '#4A90E2', opacity: 0.13, duration: 22, rotateEnd: 15 },
+          { size: 40, top: '42%', left: '52%', color: '#FF6B9D', opacity: 0.10, duration: 16, rotateEnd: -18 },
+          { size: 24, top: '75%', left: '45%', color: '#a855f7', opacity: 0.14, duration: 13, rotateEnd: 22 },
+        ].map((heart, i) => (
           <motion.div
-            key={`circle-${i}`}
-            className="absolute rounded-full border -z-10"
+            key={`heart-${i}`}
+            className="absolute -z-10"
             style={{
-              width: circle.size,
-              height: circle.size,
-              top: circle.top,
-              left: circle.left,
-              right: (circle as any).right,
-              borderColor: circle.color,
-              background: circle.color,
+              top: heart.top,
+              left: (heart as any).left,
+              right: (heart as any).right,
               x: i % 2 === 0 ? parallax1X : parallax2X,
               y: i % 2 === 0 ? parallax1Y : parallax2Y,
             }}
             animate={{
-              rotateX: [0, circle.rotateEnd, 0],
-              rotateY: [0, -circle.rotateEnd, 0],
-              scale: [1, 1.05, 1, 0.95, 1],
+              rotateX: [0, heart.rotateEnd, 0],
+              rotateY: [0, -heart.rotateEnd, 0],
+              scale: [1, 1.15, 1, 0.9, 1],
             }}
             transition={{
-              duration: circle.duration,
+              duration: heart.duration,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
-          />
+          >
+            <svg width={heart.size} height={heart.size} viewBox="0 0 24 24" fill={heart.color} opacity={heart.opacity}>
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </motion.div>
         ))}
-        {/* 3D Floating ring outlines */}
+
+        {/* Heartbeat / Pulse Lines */}
         {[
-          { size: 180, top: '15%', left: '20%', duration: 14 },
-          { size: 120, top: '55%', right: '8%', duration: 10 },
-          { size: 280, top: '65%', left: '40%', duration: 16 },
-        ].map((ring, i) => (
+          { width: 200, top: '20%', left: '25%', color: '#FF6B9D', opacity: 0.12, duration: 10 },
+          { width: 280, top: '50%', right: '5%', color: '#4A90E2', opacity: 0.10, duration: 12 },
+          { width: 160, top: '72%', left: '30%', color: '#a855f7', opacity: 0.08, duration: 14 },
+        ].map((pulse, i) => (
           <motion.div
-            key={`ring-${i}`}
-            className="absolute rounded-full -z-10"
+            key={`pulse-${i}`}
+            className="absolute -z-10"
             style={{
-              width: ring.size,
-              height: ring.size,
-              top: ring.top,
-              left: (ring as any).left,
-              right: (ring as any).right,
-              border: '1.5px solid',
-              borderColor: i % 2 === 0 ? 'rgba(255,107,157,0.12)' : 'rgba(74,144,226,0.12)',
+              top: pulse.top,
+              left: (pulse as any).left,
+              right: (pulse as any).right,
               x: i % 2 === 0 ? parallax2X : parallax1X,
               y: i % 2 === 0 ? parallax2Y : parallax1Y,
             }}
             animate={{
-              rotateX: [0, 40, 0, -40, 0],
-              rotateY: [0, -30, 0, 30, 0],
-              rotate: [0, 180, 360],
+              opacity: [pulse.opacity, pulse.opacity * 2.5, pulse.opacity],
+              scaleX: [1, 1.05, 1],
             }}
             transition={{
-              duration: ring.duration,
+              duration: pulse.duration,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
-          />
+          >
+            <svg width={pulse.width} height={pulse.width * 0.25} viewBox="0 0 200 50" fill="none" stroke={pulse.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity={pulse.opacity}>
+              <polyline points="0,25 30,25 40,25 50,10 60,40 70,5 80,45 90,25 100,25 110,25 120,20 130,30 140,25 170,25 200,25" />
+            </svg>
+          </motion.div>
         ))}
 
         <motion.div 
