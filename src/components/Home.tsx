@@ -149,34 +149,49 @@ export const Home = ({ onPageChange }: PageProps) => {
 
         <div className="flex-1 space-y-8">
           <motion.div
-            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
+            initial={{ opacity: 0, x: -30, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="inline-flex items-center gap-2 px-4 py-2 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold animate-float"
           >
             <Activity size={16} /> Tiên phong công nghệ y tế
           </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+            initial={{ opacity: 0, y: 40, filter: 'blur(12px)', scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="text-5xl md:text-7xl font-extrabold leading-tight text-ivital-dark"
           >
             Hệ sinh thái <br />
-            <span className="gradient-text">Chăm sóc sức khỏe</span> toàn diện
+            <motion.span
+              className="gradient-text inline-block"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.4, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Chăm sóc sức khỏe
+            </motion.span>{' '}
+            <motion.span
+              className="inline-block"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              toàn diện
+            </motion.span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 1.2, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="text-xl text-ivital-gray max-w-xl leading-relaxed"
           >
             iVital Technology kết hợp sức mạnh của AI và dữ liệu lớn để mang lại giải pháp chăm sóc sức khỏe cá nhân hóa, hiệu quả và dễ tiếp cận cho mọi người.
           </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.45, ease: 'easeOut' }}
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-wrap gap-4 pt-4"
           >
             <button onClick={() => onPageChange('ecosystem')} className="btn-primary flex items-center gap-2">
