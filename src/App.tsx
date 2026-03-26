@@ -1,4 +1,4 @@
-import { useState, useEffect, FC } from 'react';
+import { useState, useEffect, FC, useMemo } from 'react';
 import { Navbar, Footer } from './components/Layout';
 import { Home } from './components/Home';
 import { About } from './components/About';
@@ -16,6 +16,51 @@ const pageComponents: Record<Page, FC<{ onPageChange: (page: Page) => void }>> =
   contact: Contact,
 };
 
+const heartColors = ['#FF6B9D', '#4A90E2', '#a855f7', '#f472b6', '#60a5fa'];
+
+function FloatingHearts() {
+  const hearts = useMemo(() => 
+    Array.from({ length: 18 }, (_, i) => ({
+      id: i,
+      size: 14 + Math.random() * 30,
+      left: Math.random() * 100,
+      delay: Math.random() * 8,
+      duration: 10 + Math.random() * 12,
+      color: heartColors[i % heartColors.length],
+      opacity: 0.06 + Math.random() * 0.1,
+      drift: -30 + Math.random() * 60,
+    })),
+  []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[5] overflow-hidden">
+      {hearts.map((h) => (
+        <motion.div
+          key={h.id}
+          className="absolute"
+          style={{ left: `${h.left}%`, bottom: '-5%' }}
+          animate={{
+            y: [0, -(typeof window !== 'undefined' ? window.innerHeight + 100 : 1000)],
+            x: [0, h.drift],
+            rotate: [0, h.drift > 0 ? 20 : -20, 0],
+            scale: [0.6, 1, 0.8],
+          }}
+          transition={{
+            duration: h.duration,
+            delay: h.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <svg width={h.size} height={h.size} viewBox="0 0 24 24" fill={h.color} opacity={h.opacity}>
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          </svg>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
 
@@ -27,6 +72,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <FloatingHearts />
       <Navbar currentPage={currentPage} onPageChange={setCurrentPage} />
       
       <main className="flex-grow">
