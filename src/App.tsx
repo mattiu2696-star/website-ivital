@@ -9,6 +9,7 @@ import { Contact } from './components/Contact';
 import { NotFound } from './components/NotFound';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
+import { LanguageProvider } from './i18n/LanguageContext';
 
 const pageToPath: Record<Page, string> = {
   home: '/',
@@ -118,7 +119,9 @@ function AppContent() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppContent />
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
     </BrowserRouter>
   );
 }

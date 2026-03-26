@@ -6,33 +6,29 @@ import { PageProps } from '../types';
 import { SectionHeader } from './ui/SectionHeader';
 import { CallToActionBanner } from './ui/CallToActionBanner';
 import { FloatingStatCard } from './ui/FloatingStatCard';
+import { useLanguage } from '../i18n/LanguageContext';
 
-const visionItems = [
-  { icon: <Database className="text-ivital-pink" size={32} />, title: 'Dữ liệu lớn (Big Data)', description: 'Phân tích hàng triệu điểm dữ liệu để đưa ra dự đoán chính xác về tình trạng sức khỏe.' },
-  { icon: <Zap className="text-ivital-blue" size={32} />, title: 'Trí tuệ nhân tạo (AI)', description: 'Hệ thống AI thông minh hỗ trợ chẩn đoán và tư vấn sức khỏe 24/7.' },
-  { icon: <Smartphone className="text-ivital-pink" size={32} />, title: 'Kết nối vạn vật (IoT)', description: 'Tích hợp mượt mà với các thiết bị đeo thông minh để theo dõi chỉ số sinh tồn.' },
+const visionIcons = [
+  <Database className="text-ivital-pink" size={32} />,
+  <Zap className="text-ivital-blue" size={32} />,
+  <Smartphone className="text-ivital-pink" size={32} />,
 ];
 
-const ecosystemPreviewItems = [
-  { title: 'iVital Care', icon: <Smartphone size={24} />, description: 'App đặt điều dưỡng chăm sóc sức khoẻ' },
-  { title: 'iVital AI', icon: <Zap size={24} />, description: 'Trợ lý ảo thông minh' },
-  { title: 'iVital Lab', icon: <Activity size={24} />, description: 'Xét nghiệm công nghệ cao' },
-  { title: 'iVital BP', icon: <Heart size={24} />, description: 'App theo dõi sức khoẻ' },
+const ecosystemPreviewIcons = [
+  <Smartphone size={24} />,
+  <Zap size={24} />,
+  <Activity size={24} />,
+  <Heart size={24} />,
 ];
 
-const differentiators = [
-  { title: 'Công nghệ hàng đầu', description: 'Ứng dụng những xu hướng công nghệ mới nhất thế giới.' },
-  { title: 'Đội ngũ chuyên gia', description: 'Sự kết hợp giữa các kỹ sư và bác sĩ đầu ngành.' },
-  { title: 'Cá nhân hóa tối đa', description: 'Giải pháp được thiết kế riêng cho từng thể trạng.' },
-];
-
-const projectShowcaseSmall = [
-  { image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80', title: 'iVital Lab', description: 'Hệ thống xét nghiệm thông minh với kết quả được phân tích bởi AI.' },
-  { image: 'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&q=80', title: 'iVital BP', description: 'App theo dõi huyết áp và sức khỏe tim mạch' },
+const projectShowcaseImages = [
+  'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80',
+  'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&q=80',
 ];
 
 export const Home = ({ onPageChange }: PageProps) => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const heroRef = useRef<HTMLElement>(null);
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
@@ -156,7 +152,7 @@ export const Home = ({ onPageChange }: PageProps) => {
             transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
             className="inline-flex items-center gap-2 px-4 py-2 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold animate-float"
           >
-            <Activity size={16} /> Tiên phong công nghệ y tế
+            <Activity size={16} /> {t.home.heroBadge}
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 40, filter: 'blur(12px)', scale: 0.95 }}
@@ -164,8 +160,8 @@ export const Home = ({ onPageChange }: PageProps) => {
             transition={{ duration: 1.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="text-5xl md:text-7xl font-extrabold leading-tight text-ivital-dark"
           >
-            Hệ sinh thái <br />
-            <span className="gradient-text">Chăm sóc sức khỏe</span> toàn diện
+            {t.home.heroTitle1} <br />
+            <span className="gradient-text">{t.home.heroTitle2}</span> {t.home.heroTitle3}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
@@ -173,7 +169,7 @@ export const Home = ({ onPageChange }: PageProps) => {
             transition={{ duration: 1.6, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-xl text-ivital-gray max-w-xl leading-relaxed"
           >
-            iVital Technology kết hợp sức mạnh của AI và dữ liệu lớn để mang lại giải pháp chăm sóc sức khỏe cá nhân hóa, hiệu quả và dễ tiếp cận cho mọi người.
+            {t.home.heroDescription}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -182,10 +178,10 @@ export const Home = ({ onPageChange }: PageProps) => {
             className="flex flex-wrap gap-4 pt-4"
           >
             <Link to="/ecosystem" className="btn-primary flex items-center gap-2">
-              Khám phá hệ sinh thái <ArrowRight size={20} />
+              {t.home.heroCtaExplore} <ArrowRight size={20} />
             </Link>
             <Link to="/about" className="btn-outline">
-              Về chúng tôi
+              {t.home.heroCtaAbout}
             </Link>
           </motion.div>
         </div>
@@ -210,8 +206,8 @@ export const Home = ({ onPageChange }: PageProps) => {
             <FloatingStatCard
               icon={<ShieldCheck size={24} />}
               iconClassName="bg-green-100 text-green-600"
-              label="Bảo mật"
-              value="100% An toàn"
+              label={t.home.statSecurity}
+              value={t.home.statSecurityValue}
             />
           </motion.div>
           <motion.div
@@ -221,8 +217,8 @@ export const Home = ({ onPageChange }: PageProps) => {
             <FloatingStatCard
               icon={<Activity size={24} />}
               iconClassName="bg-blue-100 text-blue-600"
-              label="Theo dõi"
-              value="Thời gian thực"
+              label={t.home.statMonitor}
+              value={t.home.statMonitorValue}
               style={{ animationDelay: '1.5s' }}
             />
           </motion.div>
@@ -233,17 +229,17 @@ export const Home = ({ onPageChange }: PageProps) => {
       <section className="section-padding bg-ivital-light">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
-            <SectionHeader subtitle="Tầm nhìn chiến lược" title="Định hình tương lai y tế số" />
+            <SectionHeader subtitle={t.home.visionSubtitle} title={t.home.visionTitle} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {visionItems.map((item, idx) => (
+            {t.home.visionItems.map((item, idx) => (
               <motion.div 
                 key={idx}
                 whileHover={{ y: -10 }}
                 className="bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all border border-gray-100"
               >
-                <div className="mb-6">{item.icon}</div>
+                <div className="mb-6">{visionIcons[idx]}</div>
                 <h4 className="text-2xl font-bold mb-4">{item.title}</h4>
                 <p className="text-ivital-gray leading-relaxed">{item.description}</p>
               </motion.div>
@@ -256,9 +252,9 @@ export const Home = ({ onPageChange }: PageProps) => {
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
-            <SectionHeader subtitle="Dự án trọng điểm" title="Những giải pháp thay đổi cuộc sống" centered={false} />
+            <SectionHeader subtitle={t.home.projectsSubtitle} title={t.home.projectsTitle} centered={false} />
             <Link to="/projects" className="btn-outline flex items-center gap-2">
-              Xem tất cả dự án <ArrowRight size={18} />
+              {t.home.projectsViewAll} <ArrowRight size={18} />
             </Link>
           </div>
 
@@ -275,22 +271,22 @@ export const Home = ({ onPageChange }: PageProps) => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ivital-dark/90 via-ivital-dark/20 to-transparent p-12 flex flex-col justify-end">
                 <div className="space-y-4">
-                  <span className="px-4 py-1 bg-ivital-pink text-white rounded-full text-xs font-bold uppercase tracking-wider">Ứng dụng di động</span>
+                  <span className="px-4 py-1 bg-ivital-pink text-white rounded-full text-xs font-bold uppercase tracking-wider">{t.home.projectsMobileApp}</span>
                   <h4 className="text-4xl font-bold text-white">iVital Care</h4>
-                  <p className="text-gray-300 max-w-md">Trợ lý sức khỏe cá nhân toàn diện, kết nối điều dưỡng và bệnh nhân mọi lúc mọi nơi.</p>
+                  <p className="text-gray-300 max-w-md">{t.home.projectsCareDescription}</p>
                 </div>
               </div>
             </motion.div>
 
             <div className="grid grid-cols-1 gap-8">
-              {projectShowcaseSmall.map((project, idx) => (
+              {t.home.projectShowcaseSmall.map((project, idx) => (
                 <motion.div
                   key={idx}
                   whileHover={{ scale: 1.02 }}
                   className="group relative h-[236px] rounded-[3rem] overflow-hidden cursor-pointer shadow-lg"
                 >
                   <img 
-                    src={project.image} 
+                    src={projectShowcaseImages[idx]} 
                     alt={project.title} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
@@ -309,10 +305,10 @@ export const Home = ({ onPageChange }: PageProps) => {
       <section className="py-16 md:py-20 px-6 md:px-12 lg:px-24 bg-ivital-dark text-white overflow-hidden relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center space-y-4 mb-10">
-            <h2 className="text-sm font-bold text-ivital-pink uppercase tracking-widest">Hệ sinh thái iVital</h2>
-            <h3 className="text-3xl md:text-4xl font-extrabold">Mọi giải pháp trong một điểm chạm</h3>
+            <h2 className="text-sm font-bold text-ivital-pink uppercase tracking-widest">{t.home.ecosystemSubtitle}</h2>
+            <h3 className="text-3xl md:text-4xl font-extrabold">{t.home.ecosystemTitle}</h3>
             <p className="text-gray-400 max-w-xl mx-auto text-sm md:text-base">
-              Chúng tôi xây dựng một vòng lặp khép kín từ phòng ngừa, chẩn đoán đến điều trị và phục hồi chức năng.
+              {t.home.ecosystemDescription}
             </p>
           </div>
 
@@ -323,7 +319,7 @@ export const Home = ({ onPageChange }: PageProps) => {
               <div className="absolute inset-0 border border-white/[0.06] rounded-full" />
 
               {/* Orbiting cards */}
-              {ecosystemPreviewItems.map((item, idx) => {
+              {t.home.ecosystemPreviewItems.map((item, idx) => {
                 const startAngle = idx * 90;
                 return (
                   <div key={idx} className="absolute inset-0">
@@ -339,7 +335,7 @@ export const Home = ({ onPageChange }: PageProps) => {
                         transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
                       >
                         <div className="w-7 h-7 sm:w-8 sm:h-8 bg-ivital-pink/20 text-ivital-pink rounded-lg flex items-center justify-center mb-1.5">
-                          {item.icon}
+                          {ecosystemPreviewIcons[idx]}
                         </div>
                         <h4 className="text-[11px] sm:text-xs font-bold mb-0.5 text-white">{item.title}</h4>
                         <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight">{item.description}</p>
@@ -369,14 +365,14 @@ export const Home = ({ onPageChange }: PageProps) => {
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20">
           <div className="flex-1 space-y-8">
             <SectionHeader
-              subtitle="Tại sao chọn iVital?"
-              title="Chúng tôi khác biệt bởi sự tận tâm và công nghệ"
-              description="iVital không chỉ là một công ty công nghệ, chúng tôi là người bạn đồng hành tin cậy trên hành trình chăm sóc sức khỏe của bạn."
+              subtitle={t.home.whySubtitle}
+              title={t.home.whyTitle}
+              description={t.home.whyDescription}
               centered={false}
               descriptionColor="text-ivital-gray"
             />
             <div className="space-y-6">
-              {differentiators.map((item, idx) => (
+              {t.home.differentiators.map((item, idx) => (
                 <div key={idx} className="flex gap-6">
                   <div className="flex-shrink-0 w-12 h-12 bg-ivital-light rounded-full flex items-center justify-center text-ivital-pink font-black text-xl">
                     0{idx + 1}
@@ -395,24 +391,24 @@ export const Home = ({ onPageChange }: PageProps) => {
                 <div className="bg-ivital-pink p-8 rounded-[2.5rem] text-white space-y-4">
                   <Users size={40} />
                   <p className="text-4xl font-black">10.000+</p>
-                  <p className="font-bold opacity-80">Người dùng tin tưởng</p>
+                  <p className="font-bold opacity-80">{t.home.statUsers}</p>
                 </div>
                 <div className="bg-ivital-light p-8 rounded-[2.5rem] space-y-4">
                   <Activity size={40} className="text-ivital-blue" />
                   <p className="text-4xl font-black text-ivital-dark">50+</p>
-                  <p className="font-bold text-ivital-gray">Đối tác y tế</p>
+                  <p className="font-bold text-ivital-gray">{t.home.statPartners}</p>
                 </div>
               </div>
               <div className="space-y-6">
                 <div className="bg-ivital-dark p-8 rounded-[2.5rem] text-white space-y-4">
                   <ShieldCheck size={40} className="text-ivital-pink" />
                   <p className="text-4xl font-black">99%</p>
-                  <p className="font-bold opacity-80">Độ chính xác</p>
+                  <p className="font-bold opacity-80">{t.home.statAccuracy}</p>
                 </div>
                 <div className="bg-ivital-blue p-8 rounded-[2.5rem] text-white space-y-4">
                   <Heart size={40} />
                   <p className="text-4xl font-black">24/7</p>
-                  <p className="font-bold opacity-80">Hỗ trợ tận tâm</p>
+                  <p className="font-bold opacity-80">{t.home.statSupport}</p>
                 </div>
               </div>
             </div>
@@ -423,14 +419,14 @@ export const Home = ({ onPageChange }: PageProps) => {
       {/* CTA Section */}
       <CallToActionBanner
         bgColor="bg-ivital-pink"
-        title={<>Sẵn sàng để bắt đầu <br /> hành trình sức khỏe?</>}
-        description="Hãy để iVital cùng bạn kiến tạo một cuộc sống khỏe mạnh và hạnh phúc hơn mỗi ngày."
+        title={<>{t.home.ctaTitle1} <br /> {t.home.ctaTitle2}</>}
+        description={t.home.ctaDescription}
       >
         <Link to="/contact" className="px-10 py-5 bg-white text-ivital-pink rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
-          Hợp tác cùng iVital
+          {t.home.ctaPartner}
         </Link>
         <Link to="/ecosystem" className="px-10 py-5 bg-ivital-dark text-white rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
-          Khám phá thêm
+          {t.home.ctaExplore}
         </Link>
       </CallToActionBanner>
     </div>

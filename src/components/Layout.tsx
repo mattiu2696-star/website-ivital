@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronRight, HeartPulse } from 'lucide-react';
+import { Menu, X, ChevronRight, HeartPulse, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Page, NavItem } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const pageToPath: Record<Page, string> = {
   home: '/',
@@ -17,17 +18,17 @@ interface NavbarProps {
   onPageChange: (page: Page) => void;
 }
 
-
-const navItems: NavItem[] = [
-  { label: 'Trang chủ', id: 'home' },
-  { label: 'Về iVital', id: 'about' },
-  { label: 'Hệ sinh thái', id: 'ecosystem' },
-  { label: 'Dự án', id: 'projects' },
-];
+const navIds: Page[] = ['home', 'about', 'ecosystem', 'projects'];
 
 export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { locale, setLocale, t } = useLanguage();
+
+  const navItems: NavItem[] = navIds.map(id => ({
+    label: t.nav[id],
+    id,
+  }));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,8 +75,15 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
             to="/contact"
             className="btn-primary flex items-center gap-2 text-sm"
           >
-            Liên hệ <ChevronRight size={16} />
+            {t.nav.contact} <ChevronRight size={16} />
           </Link>
+          <button
+            onClick={() => setLocale(locale === 'vi' ? 'en' : 'vi')}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 text-sm font-bold text-ivital-dark hover:bg-ivital-light transition-colors"
+          >
+            <Globe size={14} />
+            {locale === 'vi' ? 'EN' : 'VI'}
+          </button>
         </div>
 
         {/* Mobile Toggle */}
@@ -114,8 +122,15 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="btn-primary w-full mt-4 text-center"
               >
-                Liên hệ ngay
+                {t.nav.contactCta}
               </Link>
+              <button
+                onClick={() => { setLocale(locale === 'vi' ? 'en' : 'vi'); setIsMobileMenuOpen(false); }}
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-full border border-gray-200 text-sm font-bold text-ivital-dark"
+              >
+                <Globe size={16} />
+                {locale === 'vi' ? 'English' : 'Tiếng Việt'}
+              </button>
             </div>
           </motion.div>
         )}
@@ -125,6 +140,12 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
 };
 
 export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void }) => {
+  const { t } = useLanguage();
+  const navItems: NavItem[] = navIds.map(id => ({
+    label: t.nav[id],
+    id,
+  }));
+
   return (
     <footer className="bg-ivital-dark text-white pt-20 pb-10 px-6 md:px-12 lg:px-24">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -138,12 +159,12 @@ export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void })
             </span>
           </div>
           <p className="text-gray-400 leading-relaxed">
-            Hệ sinh thái chăm sóc sức khỏe thế hệ mới ứng dụng AI và dữ liệu lớn, mang lại cuộc sống khỏe mạnh cho mọi người.
+            {t.footer.description}
           </p>
         </div>
 
         <div>
-          <h4 className="text-lg font-bold mb-6">Liên kết nhanh</h4>
+          <h4 className="text-lg font-bold mb-6">{t.footer.quickLinks}</h4>
           <ul className="space-y-4 text-gray-400">
             {navItems.map((item) => (
               <li key={item.id}>
@@ -159,7 +180,7 @@ export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void })
         </div>
 
         <div>
-          <h4 className="text-lg font-bold mb-6">Dịch vụ</h4>
+          <h4 className="text-lg font-bold mb-6">{t.footer.services}</h4>
           <ul className="space-y-4 text-gray-400">
             <li><button className="hover:text-ivital-pink transition-colors text-left">iVital Care</button></li>
             <li><button className="hover:text-ivital-pink transition-colors text-left">iVital AI</button></li>
@@ -169,7 +190,7 @@ export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void })
         </div>
 
         <div>
-          <h4 className="text-lg font-bold mb-6">Liên hệ</h4>
+          <h4 className="text-lg font-bold mb-6">{t.footer.contactTitle}</h4>
           <ul className="space-y-4 text-gray-400">
             <li>Số 3A, Tổ 3 Cụm Kiến Thiết, P. Thanh Xuân, Hà Nội</li>
             <li>contact@ivital.vn</li>
@@ -181,8 +202,8 @@ export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void })
       <div className="max-w-7xl mx-auto pt-10 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
         <p>© 2026 iVital Technology. All rights reserved.</p>
         <div className="flex gap-8">
-          <button className="hover:text-white transition-colors">Điều khoản sử dụng</button>
-          <button className="hover:text-white transition-colors">Chính sách bảo mật</button>
+          <button className="hover:text-white transition-colors">{t.footer.terms}</button>
+          <button className="hover:text-white transition-colors">{t.footer.privacy}</button>
         </div>
       </div>
     </footer>

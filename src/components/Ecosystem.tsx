@@ -4,41 +4,24 @@ import { Smartphone, Zap, Activity, Heart, ShieldCheck, Database, Globe, CheckCi
 import { PageProps } from '../types';
 import { SectionHeader } from './ui/SectionHeader';
 import { CallToActionBanner } from './ui/CallToActionBanner';
+import { useLanguage } from '../i18n/LanguageContext';
 
-const coreFeatures = [
-  { title: 'Dữ liệu tập trung', icon: <Database size={24} />, description: 'Mọi chỉ số sức khỏe được lưu trữ an toàn tại một nơi duy nhất.' },
-  { title: 'Phân tích thời gian thực', icon: <Activity size={24} />, description: 'Hệ thống AI xử lý dữ liệu liên tục để đưa ra cảnh báo kịp thời.' },
-  { title: 'Kết nối đa nền tảng', icon: <Globe size={24} />, description: 'Tương thích với mọi thiết bị và hệ thống y tế hiện hành.' },
+const coreFeatureIcons = [
+  <Database size={24} />,
+  <Activity size={24} />,
+  <Globe size={24} />,
 ];
 
-const ecosystemProducts = [
-  {
-    title: 'iVital Care',
-    icon: <Smartphone size={32} />,
-    description: 'Ứng dụng di động đặt điều dưỡng chăm sóc sức khoẻ, kết nối điều dưỡng và bệnh nhân mọi lúc mọi nơi.',
-    features: ['Kết nối điều dưỡng nhanh chóng', 'Đặt lịch chăm sóc tại nhà', 'Hồ sơ sức khoẻ số', 'Theo dõi quá trình điều trị'],
-  },
-  {
-    title: 'iVital AI',
-    icon: <Zap size={32} />,
-    description: 'Trợ lý ảo thông minh hỗ trợ giải đáp thắc mắc y tế và đưa ra các lời khuyên sức khỏe cá nhân hóa.',
-    features: ['Tư vấn sức khỏe 24/7', 'Dự đoán nguy cơ bệnh lý', 'Nhắc lịch uống thuốc', 'Phân tích chế độ dinh dưỡng'],
-  },
-  {
-    title: 'iVital Lab',
-    icon: <Activity size={32} />,
-    description: 'Hệ thống xét nghiệm công nghệ cao, tự động hóa quy trình và phân tích kết quả bằng AI.',
-    features: ['Xét nghiệm tại nhà', 'Kết quả nhanh chóng', 'Phân tích AI chuyên sâu', 'Lưu trữ kết quả trọn đời'],
-  },
-  {
-    title: 'iVital BP',
-    icon: <Heart size={32} />,
-    description: 'App theo dõi huyết áp và sức khỏe tim mạch, cảnh báo sớm các nguy cơ tiềm ẩn.',
-    features: ['Theo dõi huyết áp liên tục', 'Cảnh báo chỉ số bất thường', 'Biểu đồ sức khoẻ trực quan', 'Kết nối thiết bị đeo thông minh'],
-  },
+const productIcons = [
+  <Smartphone size={32} />,
+  <Zap size={32} />,
+  <Activity size={32} />,
+  <Heart size={32} />,
 ];
 
 export const Ecosystem = ({ onPageChange }: PageProps) => {
+  const { t } = useLanguage();
+
   return (
     <div className="pt-24">
       {/* Ecosystem Hero */}
@@ -50,12 +33,12 @@ export const Ecosystem = ({ onPageChange }: PageProps) => {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-4xl mx-auto space-y-6"
         >
-          <h2 className="text-sm font-bold text-ivital-pink uppercase tracking-widest">Hệ sinh thái iVital</h2>
+          <h2 className="text-sm font-bold text-ivital-pink uppercase tracking-widest">{t.ecosystem.heroSubtitle}</h2>
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
-            Kết nối <span className="gradient-text">mọi giải pháp</span> <br /> trong một điểm chạm
+            {t.ecosystem.heroTitle1} <span className="gradient-text">{t.ecosystem.heroTitle2}</span> <br /> {t.ecosystem.heroTitle3}
           </h1>
           <p className="text-xl text-gray-400 leading-relaxed">
-            Chúng tôi xây dựng một hệ sinh thái y tế số khép kín, nơi dữ liệu được kết nối và phân tích để mang lại trải nghiệm chăm sóc sức khỏe liền mạch.
+            {t.ecosystem.heroDescription}
           </p>
         </motion.div>
       </section>
@@ -65,19 +48,19 @@ export const Ecosystem = ({ onPageChange }: PageProps) => {
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
           <div className="flex-1 space-y-12">
             <SectionHeader
-              subtitle="Cấu trúc hệ thống"
-              title="iVital Core AI"
-              description="Trái tim của hệ sinh thái là iVital Core AI - bộ não xử lý dữ liệu khổng lồ từ mọi điểm chạm để đưa ra những phân tích và dự đoán chính xác nhất."
+              subtitle={t.ecosystem.systemSubtitle}
+              title={t.ecosystem.systemTitle}
+              description={t.ecosystem.systemDescription}
               centered={false}
               titleColor="text-white"
               descriptionColor="text-gray-400"
             />
 
             <div className="space-y-6">
-              {coreFeatures.map((item, idx) => (
+              {t.ecosystem.coreFeatures.map((item, idx) => (
                 <div key={idx} className="flex gap-6 p-8 bg-white/5 border border-white/10 rounded-[2.5rem] hover:bg-white/10 transition-all">
                   <div className="w-12 h-12 bg-ivital-pink/20 text-ivital-pink rounded-2xl flex items-center justify-center flex-shrink-0">
-                    {item.icon}
+                    {coreFeatureIcons[idx]}
                   </div>
                   <div>
                     <h4 className="text-xl font-bold mb-2">{item.title}</h4>
@@ -131,11 +114,11 @@ export const Ecosystem = ({ onPageChange }: PageProps) => {
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20">
-            <SectionHeader subtitle="Chi tiết giải pháp" title="Hệ sinh thái toàn diện" />
+            <SectionHeader subtitle={t.ecosystem.detailSubtitle} title={t.ecosystem.detailTitle} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {ecosystemProducts.map((item, idx) => (
+            {t.ecosystem.products.map((item, idx) => (
               <motion.div 
                 key={idx}
                 whileHover={{ y: -10 }}
@@ -143,7 +126,7 @@ export const Ecosystem = ({ onPageChange }: PageProps) => {
               >
                 <div className="flex items-center gap-6">
                   <div className="w-16 h-16 bg-white text-ivital-pink rounded-2xl flex items-center justify-center shadow-sm">
-                    {item.icon}
+                    {productIcons[idx]}
                   </div>
                   <h4 className="text-3xl font-bold">{item.title}</h4>
                 </div>
@@ -165,14 +148,14 @@ export const Ecosystem = ({ onPageChange }: PageProps) => {
       {/* CTA */}
       <CallToActionBanner
         bgColor="bg-ivital-pink"
-        title={<>Sẵn sàng kết nối cùng <br /> hệ sinh thái iVital?</>}
-        description="Chúng tôi luôn sẵn sàng hỗ trợ bạn trên hành trình chăm sóc sức khỏe toàn diện."
+        title={<>{t.ecosystem.ctaTitle1} <br /> {t.ecosystem.ctaTitle2}</>}
+        description={t.ecosystem.ctaDescription}
       >
         <Link to="/contact" className="px-10 py-5 bg-white text-ivital-pink rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
-          Liên hệ ngay
+          {t.ecosystem.ctaContact}
         </Link>
         <Link to="/projects" className="px-10 py-5 bg-ivital-dark text-white rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
-          Xem các dự án
+          {t.ecosystem.ctaProjects}
         </Link>
       </CallToActionBanner>
     </div>
