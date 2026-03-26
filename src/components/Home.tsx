@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Activity, ShieldCheck, Zap, Heart, Database, Smartphone, Users } from 'lucide-react';
+import { ArrowRight, Activity, ShieldCheck, Zap, Heart, Database, Smartphone, Users, Brain, Stethoscope } from 'lucide-react';
 import { PageProps } from '../types';
 import { SectionHeader } from './ui/SectionHeader';
 import { CallToActionBanner } from './ui/CallToActionBanner';
@@ -33,142 +33,155 @@ export const Home = ({ onPageChange }: PageProps) => {
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="section-padding min-h-[90vh] flex items-center justify-center relative overflow-hidden">
-        {/* Animated grid background */}
-        <div className="absolute inset-0 -z-20 hero-grid opacity-[0.03]" />
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-6">
+        {/* Background layers */}
+        <div className="absolute inset-0 -z-20 hero-grid opacity-[0.04]" />
+        <div className="absolute inset-0 -z-20 bg-gradient-to-b from-white via-ivital-light/50 to-white" />
 
-        {/* Floating gradient orbs */}
+        {/* Orbiting gradient blobs */}
         <motion.div
-          className="absolute -top-20 -right-20 w-[600px] h-[600px] rounded-full -z-10"
-          style={{ background: 'radial-gradient(circle, rgba(255,107,157,0.2) 0%, transparent 70%)' }}
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 40, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full -z-10 opacity-60"
+          style={{ background: 'radial-gradient(circle, rgba(255,107,157,0.15) 0%, transparent 65%)' }}
+          animate={{ x: [0, 50, 0], y: [0, -40, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute -bottom-32 -left-20 w-[500px] h-[500px] rounded-full -z-10"
-          style={{ background: 'radial-gradient(circle, rgba(74,144,226,0.2) 0%, transparent 70%)' }}
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -30, 0],
-            y: [0, 35, 0],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full -z-10 opacity-60"
+          style={{ background: 'radial-gradient(circle, rgba(74,144,226,0.15) 0%, transparent 65%)' }}
+          animate={{ x: [0, -40, 0], y: [0, 40, 0], scale: [1, 1.15, 1] }}
+          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
         />
+
+        {/* Floating icon badges - left side */}
         <motion.div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[400px] rounded-full -z-10"
-          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)' }}
-          animate={{
-            scale: [1, 1.15, 1],
-            y: [0, -20, 0],
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        />
+          className="hidden lg:flex absolute left-[8%] top-[25%] items-center gap-3 bg-white/80 backdrop-blur-md shadow-lg rounded-2xl px-5 py-3 border border-gray-100"
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <div className="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center">
+            <Heart size={20} className="text-ivital-pink" />
+          </div>
+          <div>
+            <p className="text-xs text-ivital-gray">Sức khỏe</p>
+            <p className="text-sm font-bold">Toàn diện</p>
+          </div>
+        </motion.div>
 
-        {/* Pulse rings */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10">
-          {[700, 500, 300].map((size, i) => (
-            <motion.div
-              key={size}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-ivital-pink/10"
-              style={{ width: size, height: size }}
-              animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 4 + i * 2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.8 }}
-            />
-          ))}
-        </div>
+        <motion.div
+          className="hidden lg:flex absolute left-[5%] bottom-[30%] items-center gap-3 bg-white/80 backdrop-blur-md shadow-lg rounded-2xl px-5 py-3 border border-gray-100"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        >
+          <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
+            <Brain size={20} className="text-ivital-blue" />
+          </div>
+          <div>
+            <p className="text-xs text-ivital-gray">AI</p>
+            <p className="text-sm font-bold">Thông minh</p>
+          </div>
+        </motion.div>
 
-        {/* Floating particles */}
-        {[...Array(6)].map((_, i) => (
+        {/* Floating icon badges - right side */}
+        <motion.div
+          className="hidden lg:flex absolute right-[8%] top-[20%] items-center gap-3 bg-white/80 backdrop-blur-md shadow-lg rounded-2xl px-5 py-3 border border-gray-100"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+        >
+          <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+            <ShieldCheck size={20} className="text-green-600" />
+          </div>
+          <div>
+            <p className="text-xs text-ivital-gray">Bảo mật</p>
+            <p className="text-sm font-bold">100% An toàn</p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="hidden lg:flex absolute right-[6%] bottom-[28%] items-center gap-3 bg-white/80 backdrop-blur-md shadow-lg rounded-2xl px-5 py-3 border border-gray-100"
+          animate={{ y: [0, 12, 0] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+        >
+          <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+            <Stethoscope size={20} className="text-purple-600" />
+          </div>
+          <div>
+            <p className="text-xs text-ivital-gray">Theo dõi</p>
+            <p className="text-sm font-bold">Thời gian thực</p>
+          </div>
+        </motion.div>
+
+        {/* Center content */}
+        <div className="text-center max-w-3xl mx-auto relative z-10 py-32">
           <motion.div
-            key={`particle-${i}`}
-            className="absolute w-2 h-2 rounded-full -z-10"
-            style={{
-              background: i % 2 === 0 ? '#FF6B9D' : '#4A90E2',
-              left: `${15 + i * 14}%`,
-              top: `${20 + (i % 3) * 25}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              x: [0, i % 2 === 0 ? 15 : -15, 0],
-              opacity: [0.3, 0.7, 0.3],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{ duration: 3 + i * 0.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
-          />
-        ))}
-
-        <div className="text-center space-y-8 max-w-4xl mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, scale: 0, rotate: -180 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.3 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold animate-float"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold mb-8"
           >
             <Activity size={16} /> Tiên phong công nghệ y tế
           </motion.div>
 
-          <div className="overflow-hidden">
-            <motion.h1
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.5 }}
-              className="text-5xl md:text-7xl font-extrabold leading-tight text-ivital-dark"
-            >
-              Hệ sinh thái <br />
-              <motion.span
-                className="gradient-text inline-block"
-                initial={{ opacity: 0, x: -80 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ type: 'spring', stiffness: 80, damping: 15, delay: 0.8 }}
-              >
-                Chăm sóc sức khỏe
-              </motion.span>{' '}
-              <motion.span
-                className="inline-block"
-                initial={{ opacity: 0, x: 80 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ type: 'spring', stiffness: 80, damping: 15, delay: 1.0 }}
-              >
-                toàn diện
-              </motion.span>
-            </motion.h1>
-          </div>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="text-5xl md:text-7xl font-extrabold leading-[1.1] text-ivital-dark mb-8"
+          >
+            Hệ sinh thái{' '}
+            <span className="gradient-text">Chăm sóc sức khỏe</span>{' '}
+            toàn diện
+          </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="text-xl text-ivital-gray max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="text-lg md:text-xl text-ivital-gray max-w-xl mx-auto leading-relaxed mb-10"
           >
             iVital Technology kết hợp sức mạnh của AI và dữ liệu lớn để mang lại giải pháp chăm sóc sức khỏe cá nhân hóa, hiệu quả và dễ tiếp cận cho mọi người.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 120, damping: 15, delay: 1.5 }}
-            className="flex flex-wrap justify-center gap-4 pt-4"
+            transition={{ duration: 0.7, delay: 0.8 }}
+            className="flex flex-wrap justify-center gap-4 mb-16"
           >
             <motion.button
               onClick={() => onPageChange('ecosystem')}
-              className="btn-primary flex items-center gap-2"
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
+              className="btn-primary flex items-center gap-2 text-base px-8 py-4"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
             >
               Khám phá hệ sinh thái <ArrowRight size={20} />
             </motion.button>
             <motion.button
               onClick={() => onPageChange('about')}
-              className="btn-outline"
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
+              className="btn-outline text-base px-8 py-4"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
             >
               Về chúng tôi
             </motion.button>
+          </motion.div>
+
+          {/* Stats row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.0 }}
+            className="flex flex-wrap justify-center gap-8 md:gap-16"
+          >
+            {[
+              { value: '4+', label: 'Sản phẩm' },
+              { value: '24/7', label: 'Hỗ trợ AI' },
+              { value: '100%', label: 'Bảo mật' },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="text-3xl md:text-4xl font-extrabold gradient-text">{stat.value}</p>
+                <p className="text-sm text-ivital-gray mt-1">{stat.label}</p>
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>
