@@ -34,6 +34,20 @@ export const Home = ({ onPageChange }: PageProps) => {
     <div className="pt-24">
       {/* Hero Section */}
       <section className="section-padding min-h-[90vh] flex items-center justify-center relative overflow-hidden">
+        {/* Background Video */}
+        <div className="absolute inset-0 -z-20">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="https://videos.pexels.com/video-files/7579955/7579955-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-white/85 backdrop-blur-sm" />
+        </div>
+
         {/* Animated background blobs */}
         <motion.div
           className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ivital-pink/15 rounded-full -z-10 blur-3xl"
@@ -59,7 +73,7 @@ export const Home = ({ onPageChange }: PageProps) => {
           transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
         />
 
-        <div className="text-center space-y-8 max-w-4xl mx-auto">
+        <div className="text-center space-y-8 max-w-4xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0, rotate: -180 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
