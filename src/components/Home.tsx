@@ -33,65 +33,102 @@ export const Home = ({ onPageChange }: PageProps) => {
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="section-padding flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-ivital-pink/10 to-transparent -z-10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-r from-ivital-blue/10 to-transparent -z-10 blur-3xl" />
+      <section className="section-padding min-h-[90vh] flex items-center justify-center relative overflow-hidden">
+        {/* Animated background blobs */}
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ivital-pink/15 rounded-full -z-10 blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 30, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-ivital-blue/15 rounded-full -z-10 blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, -25, 0],
+            y: [0, 25, 0],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-br from-ivital-pink/5 to-ivital-blue/5 rounded-full -z-10 blur-3xl"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+        />
 
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex-1 space-y-8"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold animate-float">
+        <div className="text-center space-y-8 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0, rotate: -180 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.3 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold animate-float"
+          >
             <Activity size={16} /> Tiên phong công nghệ y tế
-          </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-ivital-dark">
-            Hệ sinh thái <br />
-            <span className="gradient-text">Chăm sóc sức khỏe</span> toàn diện
-          </h1>
-          <p className="text-xl text-ivital-gray max-w-xl leading-relaxed">
-            iVital Technology kết hợp sức mạnh của AI và dữ liệu lớn để mang lại giải pháp chăm sóc sức khỏe cá nhân hóa, hiệu quả và dễ tiếp cận cho mọi người.
-          </p>
-          <div className="flex flex-wrap gap-4 pt-4">
-            <button onClick={() => onPageChange('ecosystem')} className="btn-primary flex items-center gap-2">
-              Khám phá hệ sinh thái <ArrowRight size={20} />
-            </button>
-            <button onClick={() => onPageChange('about')} className="btn-outline">
-              Về chúng tôi
-            </button>
-          </div>
-        </motion.div>
+          </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="flex-1 relative"
-        >
-          <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
-            <img 
-              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80" 
-              alt="Health Tech" 
-              className="w-full h-auto object-cover"
-            />
+          <div className="overflow-hidden">
+            <motion.h1
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.5 }}
+              className="text-5xl md:text-7xl font-extrabold leading-tight text-ivital-dark"
+            >
+              Hệ sinh thái <br />
+              <motion.span
+                className="gradient-text inline-block"
+                initial={{ opacity: 0, x: -80 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: 'spring', stiffness: 80, damping: 15, delay: 0.8 }}
+              >
+                Chăm sóc sức khỏe
+              </motion.span>{' '}
+              <motion.span
+                className="inline-block"
+                initial={{ opacity: 0, x: 80 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: 'spring', stiffness: 80, damping: 15, delay: 1.0 }}
+              >
+                toàn diện
+              </motion.span>
+            </motion.h1>
           </div>
-          <FloatingStatCard
-            icon={<ShieldCheck size={24} />}
-            iconClassName="bg-green-100 text-green-600"
-            label="Bảo mật"
-            value="100% An toàn"
-            className="absolute -top-10 -right-10"
-          />
-          <FloatingStatCard
-            icon={<Activity size={24} />}
-            iconClassName="bg-blue-100 text-blue-600"
-            label="Theo dõi"
-            value="Thời gian thực"
-            className="absolute -bottom-10 -left-10"
-            style={{ animationDelay: '1.5s' }}
-          />
-        </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="text-xl text-ivital-gray max-w-2xl mx-auto leading-relaxed"
+          >
+            iVital Technology kết hợp sức mạnh của AI và dữ liệu lớn để mang lại giải pháp chăm sóc sức khỏe cá nhân hóa, hiệu quả và dễ tiếp cận cho mọi người.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 120, damping: 15, delay: 1.5 }}
+            className="flex flex-wrap justify-center gap-4 pt-4"
+          >
+            <motion.button
+              onClick={() => onPageChange('ecosystem')}
+              className="btn-primary flex items-center gap-2"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Khám phá hệ sinh thái <ArrowRight size={20} />
+            </motion.button>
+            <motion.button
+              onClick={() => onPageChange('about')}
+              className="btn-outline"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Về chúng tôi
+            </motion.button>
+          </motion.div>
+        </div>
       </section>
 
       {/* Strategic Vision */}
