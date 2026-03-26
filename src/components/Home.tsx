@@ -320,27 +320,51 @@ export const Home = ({ onPageChange }: PageProps) => {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full lg:w-1/2">
-              {ecosystemPreviewItems.map((item, idx) => (
-                <div key={idx} className="bg-white/5 backdrop-blur-lg border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-all">
-                  <div className="w-12 h-12 bg-ivital-pink/20 text-ivital-pink rounded-2xl flex items-center justify-center mb-6">
-                    {item.icon}
-                  </div>
-                  <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                  <p className="text-gray-400 text-sm">{item.description}</p>
-                </div>
-              ))}
-            </div>
-            
-            <div className="w-full lg:w-1/2 flex justify-center">
-              <div className="relative w-80 h-80 md:w-[450px] md:h-[450px]">
-                <div className="absolute inset-0 bg-ivital-pink/20 blur-[100px] rounded-full animate-pulse" />
+          <div className="flex items-center justify-center">
+            <div className="relative w-[320px] h-[320px] md:w-[550px] md:h-[550px] lg:w-[650px] lg:h-[650px]">
+              {/* Orbit rings */}
+              <div className="absolute inset-[15%] border border-white/10 rounded-full" />
+              <div className="absolute inset-0 border border-white/5 rounded-full" />
+
+              {/* Orbiting cards */}
+              {ecosystemPreviewItems.map((item, idx) => {
+                const angle = (idx * 90) - 45; // -45, 45, 135, 225 degrees
+                return (
+                  <motion.div
+                    key={idx}
+                    className="absolute top-1/2 left-1/2"
+                    style={{ width: 0, height: 0 }}
+                    animate={{ rotate: [angle, angle + 360] }}
+                    transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                  >
+                    <motion.div
+                      className="absolute bg-white/5 backdrop-blur-lg border border-white/10 p-4 md:p-6 rounded-2xl hover:bg-white/10 transition-all cursor-pointer w-[130px] md:w-[170px]"
+                      style={{
+                        top: '-50%',
+                        left: '-50%',
+                        transform: `translateX(${typeof window !== 'undefined' && window.innerWidth < 768 ? 120 : 220}px) translate(-50%, -50%)`,
+                      }}
+                      animate={{ rotate: [-(angle), -(angle + 360)] }}
+                      transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                    >
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-ivital-pink/20 text-ivital-pink rounded-xl flex items-center justify-center mb-3">
+                        {item.icon}
+                      </div>
+                      <h4 className="text-sm md:text-base font-bold mb-1 text-white">{item.title}</h4>
+                      <p className="text-gray-400 text-xs md:text-sm leading-tight">{item.description}</p>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+
+              {/* Center: iVital CORE */}
+              <div className="absolute inset-[20%] md:inset-[25%]">
+                <div className="absolute inset-0 bg-ivital-pink/20 blur-[80px] rounded-full animate-pulse" />
                 <div className="relative z-10 w-full h-full bg-gradient-to-br from-ivital-pink to-ivital-blue rounded-full flex items-center justify-center shadow-2xl">
-                  <div className="text-center p-8">
-                    <span className="text-6xl md:text-8xl font-black text-white opacity-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">V</span>
-                    <h4 className="text-3xl md:text-5xl font-black text-white relative z-10">iVital</h4>
-                    <p className="text-white/80 font-bold mt-2 relative z-10">CORE</p>
+                  <div className="text-center">
+                    <span className="text-5xl md:text-7xl font-black text-white opacity-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">V</span>
+                    <h4 className="text-2xl md:text-4xl font-black text-white relative z-10">iVital</h4>
+                    <p className="text-white/80 font-bold mt-1 relative z-10 text-sm md:text-base">CORE</p>
                   </div>
                 </div>
               </div>
