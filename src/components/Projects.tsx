@@ -79,51 +79,12 @@ export const Projects = ({ onPageChange }: PageProps) => {
                     <div className="w-[8px] h-[8px] bg-[#1a1a2e] rounded-full ring-1 ring-gray-800 mr-3" />
                     <div className="w-[10px] h-[10px] bg-[#0a1a3a] rounded-full ring-1 ring-gray-800" />
                   </div>
-                  {/* App UI built with code */}
-                  <div className="pt-12 pb-6 px-5 min-h-[460px] bg-white">
-                    {/* Status bar */}
-                    <div className="flex justify-between items-center text-[10px] font-semibold text-gray-800 mb-4 px-1">
-                      <span>9:41</span>
-                      <div className="flex gap-1 items-center">
-                        <div className="w-3.5 h-2 border border-gray-800 rounded-sm relative"><div className="absolute inset-[1px] right-[2px] bg-gray-800 rounded-[1px]" /></div>
-                      </div>
-                    </div>
-                    {/* Greeting */}
-                    <p className="text-[11px] text-ivital-gray">Chào buổi sáng 👋</p>
-                    <p className="text-sm font-bold text-ivital-dark mb-4">Nguyễn Văn A</p>
-                    {/* Health score card */}
-                    <div className="bg-gradient-to-r from-ivital-pink to-ivital-blue rounded-2xl p-4 text-white mb-4">
-                      <p className="text-[10px] opacity-80 mb-1">Chỉ số sức khỏe</p>
-                      <div className="flex items-end justify-between">
-                        <p className="text-3xl font-black">92<span className="text-sm font-bold">/100</span></p>
-                        <p className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full">Rất tốt ✓</p>
-                      </div>
-                    </div>
-                    {/* Quick stats */}
-                    <div className="grid grid-cols-2 gap-2 mb-4">
-                      <div className="bg-pink-50 rounded-xl p-3">
-                        <Heart size={14} className="text-ivital-pink mb-1" />
-                        <p className="text-[10px] text-ivital-gray">Nhịp tim</p>
-                        <p className="text-sm font-bold">72 BPM</p>
-                      </div>
-                      <div className="bg-blue-50 rounded-xl p-3">
-                        <Activity size={14} className="text-ivital-blue mb-1" />
-                        <p className="text-[10px] text-ivital-gray">Huyết áp</p>
-                        <p className="text-sm font-bold">120/80</p>
-                      </div>
-                    </div>
-                    {/* Upcoming */}
-                    <p className="text-[10px] font-bold text-ivital-dark mb-2">Lịch hẹn sắp tới</p>
-                    <div className="bg-ivital-light rounded-xl p-3 flex items-center gap-3">
-                      <div className="w-8 h-8 bg-ivital-pink/10 rounded-lg flex items-center justify-center">
-                        <Smartphone size={14} className="text-ivital-pink" />
-                      </div>
-                      <div>
-                        <p className="text-[11px] font-bold">Khám tổng quát</p>
-                        <p className="text-[9px] text-ivital-gray">Hôm nay, 14:00</p>
-                      </div>
-                    </div>
-                  </div>
+                  {/* App screenshot */}
+                  <img 
+                    src="https://i.ibb.co/CK1Fz5zm/Screenshot-2026-03-25-at-10-53-08.png" 
+                    alt="iVital Care App" 
+                    className="w-full h-auto object-contain"
+                  />
                   {/* Home indicator */}
                   <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[120px] h-[4px] bg-black/30 rounded-full" />
                 </div>
