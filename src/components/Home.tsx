@@ -312,7 +312,7 @@ export const Home = ({ onPageChange }: PageProps) => {
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center space-y-6 mb-20">
+          <div className="text-center space-y-6 mb-16">
             <h2 className="text-sm font-bold text-ivital-pink uppercase tracking-widest">Hệ sinh thái iVital</h2>
             <h3 className="text-4xl md:text-5xl font-extrabold">Mọi giải pháp trong một điểm chạm</h3>
             <p className="text-gray-400 max-w-2xl mx-auto">
@@ -321,75 +321,52 @@ export const Home = ({ onPageChange }: PageProps) => {
           </div>
 
           <div className="flex items-center justify-center py-8">
-            <div className="relative w-[340px] h-[340px] md:w-[580px] md:h-[580px] lg:w-[700px] lg:h-[700px]">
-              {/* Orbit rings */}
+            {/* Orbit container */}
+            <div className="relative" style={{ width: 'min(90vw, 700px)', height: 'min(90vw, 700px)' }}>
+              {/* Orbit track */}
+              <div className="absolute inset-0 border border-white/8 rounded-full" />
               <motion.div
-                className="absolute inset-[8%] border border-white/8 rounded-full"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-              />
-              <motion.div
-                className="absolute inset-[2%] border border-dashed border-white/5 rounded-full"
+                className="absolute inset-[-2%] border border-dashed border-white/5 rounded-full"
                 animate={{ rotate: -360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+                transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
               />
 
-              {/* 4 cards positioned at top, right, bottom, left */}
+              {/* Orbiting cards - true rotation */}
               {ecosystemPreviewItems.map((item, idx) => {
-                // Position cards at: top-right, bottom-right, bottom-left, top-left
-                const positions = [
-                  { top: '2%', left: '50%', tx: '-50%', ty: '0', floatY: [-6, 6] },
-                  { top: '50%', left: '98%', tx: '-100%', ty: '-50%', floatX: [-6, 6] },
-                  { top: '98%', left: '50%', tx: '-50%', ty: '-100%', floatY: [6, -6] },
-                  { top: '50%', left: '2%', tx: '0', ty: '-50%', floatX: [6, -6] },
-                ];
-                const pos = positions[idx];
+                const startAngle = idx * 90;
                 return (
-                  <motion.div
-                    key={idx}
-                    className="absolute z-10 bg-white/5 backdrop-blur-lg border border-white/10 p-3 md:p-5 rounded-2xl hover:bg-white/15 hover:border-ivital-pink/30 transition-all cursor-pointer w-[130px] md:w-[180px] lg:w-[200px]"
-                    style={{
-                      top: pos.top,
-                      left: pos.left,
-                      transform: `translate(${pos.tx}, ${pos.ty})`,
-                    }}
-                    animate={{
-                      y: pos.floatY || [0, 0],
-                      x: (pos as any).floatX || [0, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      repeatType: 'reverse',
-                      ease: 'easeInOut',
-                      delay: idx * 0.5,
-                    }}
-                  >
-                    <div className="w-9 h-9 md:w-11 md:h-11 bg-ivital-pink/20 text-ivital-pink rounded-xl flex items-center justify-center mb-2 md:mb-3">
-                      {item.icon}
-                    </div>
-                    <h4 className="text-xs md:text-sm lg:text-base font-bold mb-1 text-white">{item.title}</h4>
-                    <p className="text-gray-400 text-[10px] md:text-xs lg:text-sm leading-tight">{item.description}</p>
-                  </motion.div>
+                  <div key={idx} className="absolute inset-0">
+                    <motion.div
+                      className="absolute inset-0"
+                      animate={{ rotate: [startAngle, startAngle + 360] }}
+                      transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
+                    >
+                      {/* Card sits at top center of orbit, pushed out by 50% radius */}
+                      <motion.div
+                        className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 z-10 bg-white/[0.07] backdrop-blur-xl border border-white/10 rounded-2xl p-3 sm:p-4 hover:bg-white/15 hover:border-ivital-pink/30 transition-all cursor-pointer"
+                        style={{ width: 'clamp(120px, 22vw, 190px)' }}
+                        animate={{ rotate: [-(startAngle), -(startAngle + 360)] }}
+                        transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
+                      >
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-ivital-pink/20 text-ivital-pink rounded-xl flex items-center justify-center mb-2">
+                          {item.icon}
+                        </div>
+                        <h4 className="text-xs sm:text-sm font-bold mb-0.5 text-white">{item.title}</h4>
+                        <p className="text-gray-400 text-[10px] sm:text-xs leading-tight">{item.description}</p>
+                      </motion.div>
+                    </motion.div>
+                  </div>
                 );
               })}
 
-              {/* Connecting lines (subtle) */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 100 100">
-                <line x1="50" y1="18" x2="82" y2="50" stroke="rgba(255,107,157,0.08)" strokeWidth="0.3" />
-                <line x1="82" y1="50" x2="50" y2="82" stroke="rgba(74,144,226,0.08)" strokeWidth="0.3" />
-                <line x1="50" y1="82" x2="18" y2="50" stroke="rgba(168,85,247,0.08)" strokeWidth="0.3" />
-                <line x1="18" y1="50" x2="50" y2="18" stroke="rgba(255,107,157,0.08)" strokeWidth="0.3" />
-              </svg>
-
-              {/* Center: iVital CORE */}
-              <div className="absolute inset-[25%] md:inset-[28%]">
-                <div className="absolute inset-0 bg-ivital-pink/20 blur-[80px] rounded-full animate-pulse" />
-                <div className="relative z-10 w-full h-full bg-gradient-to-br from-ivital-pink to-ivital-blue rounded-full flex items-center justify-center shadow-2xl">
+              {/* Small center: iVital CORE */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[35%] h-[35%]">
+                <div className="absolute inset-0 bg-ivital-pink/25 blur-[60px] rounded-full animate-pulse" />
+                <div className="relative z-10 w-full h-full bg-gradient-to-br from-ivital-pink to-ivital-blue rounded-full flex items-center justify-center shadow-2xl shadow-ivital-pink/20">
                   <div className="text-center">
-                    <span className="text-4xl md:text-6xl font-black text-white opacity-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">V</span>
-                    <h4 className="text-2xl md:text-4xl font-black text-white relative z-10">iVital</h4>
-                    <p className="text-white/80 font-bold mt-1 relative z-10 text-sm md:text-base">CORE</p>
+                    <span className="text-3xl sm:text-4xl md:text-5xl font-black text-white opacity-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">V</span>
+                    <h4 className="text-lg sm:text-xl md:text-2xl font-black text-white relative z-10">iVital</h4>
+                    <p className="text-white/80 font-bold relative z-10 text-[10px] sm:text-xs">CORE</p>
                   </div>
                 </div>
               </div>
