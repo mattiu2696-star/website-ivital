@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Activity, ShieldCheck, Zap, Heart, Database, Smartphone, Users, Brain, Stethoscope } from 'lucide-react';
+import { ArrowRight, Activity, ShieldCheck, Zap, Heart, Database, Smartphone, Users } from 'lucide-react';
 import { PageProps } from '../types';
 import { SectionHeader } from './ui/SectionHeader';
 import { CallToActionBanner } from './ui/CallToActionBanner';
@@ -33,157 +33,65 @@ export const Home = ({ onPageChange }: PageProps) => {
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-6">
-        {/* Background layers */}
-        <div className="absolute inset-0 -z-20 hero-grid opacity-[0.04]" />
-        <div className="absolute inset-0 -z-20 bg-gradient-to-b from-white via-ivital-light/50 to-white" />
+      <section className="section-padding flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-ivital-pink/10 to-transparent -z-10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-r from-ivital-blue/10 to-transparent -z-10 blur-3xl" />
 
-        {/* Orbiting gradient blobs */}
-        <motion.div
-          className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full -z-10 opacity-60"
-          style={{ background: 'radial-gradient(circle, rgba(255,107,157,0.15) 0%, transparent 65%)' }}
-          animate={{ x: [0, 50, 0], y: [0, -40, 0], scale: [1, 1.1, 1] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full -z-10 opacity-60"
-          style={{ background: 'radial-gradient(circle, rgba(74,144,226,0.15) 0%, transparent 65%)' }}
-          animate={{ x: [0, -40, 0], y: [0, 40, 0], scale: [1, 1.15, 1] }}
-          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-        />
-
-        {/* Floating icon badges - left side */}
-        <motion.div
-          className="hidden lg:flex absolute left-[8%] top-[25%] items-center gap-3 bg-white/80 backdrop-blur-md shadow-lg rounded-2xl px-5 py-3 border border-gray-100"
-          animate={{ y: [0, -12, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex-1 space-y-8"
         >
-          <div className="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center">
-            <Heart size={20} className="text-ivital-pink" />
-          </div>
-          <div>
-            <p className="text-xs text-ivital-gray">Sức khỏe</p>
-            <p className="text-sm font-bold">Toàn diện</p>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="hidden lg:flex absolute left-[5%] bottom-[30%] items-center gap-3 bg-white/80 backdrop-blur-md shadow-lg rounded-2xl px-5 py-3 border border-gray-100"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        >
-          <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
-            <Brain size={20} className="text-ivital-blue" />
-          </div>
-          <div>
-            <p className="text-xs text-ivital-gray">AI</p>
-            <p className="text-sm font-bold">Thông minh</p>
-          </div>
-        </motion.div>
-
-        {/* Floating icon badges - right side */}
-        <motion.div
-          className="hidden lg:flex absolute right-[8%] top-[20%] items-center gap-3 bg-white/80 backdrop-blur-md shadow-lg rounded-2xl px-5 py-3 border border-gray-100"
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-        >
-          <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
-            <ShieldCheck size={20} className="text-green-600" />
-          </div>
-          <div>
-            <p className="text-xs text-ivital-gray">Bảo mật</p>
-            <p className="text-sm font-bold">100% An toàn</p>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="hidden lg:flex absolute right-[6%] bottom-[28%] items-center gap-3 bg-white/80 backdrop-blur-md shadow-lg rounded-2xl px-5 py-3 border border-gray-100"
-          animate={{ y: [0, 12, 0] }}
-          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-        >
-          <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
-            <Stethoscope size={20} className="text-purple-600" />
-          </div>
-          <div>
-            <p className="text-xs text-ivital-gray">Theo dõi</p>
-            <p className="text-sm font-bold">Thời gian thực</p>
-          </div>
-        </motion.div>
-
-        {/* Center content */}
-        <div className="text-center max-w-3xl mx-auto relative z-10 py-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold mb-8"
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold animate-float">
             <Activity size={16} /> Tiên phong công nghệ y tế
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-5xl md:text-7xl font-extrabold leading-[1.1] text-ivital-dark mb-8"
-          >
-            Hệ sinh thái{' '}
-            <span className="gradient-text">Chăm sóc sức khỏe</span>{' '}
-            toàn diện
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="text-lg md:text-xl text-ivital-gray max-w-xl mx-auto leading-relaxed mb-10"
-          >
+          </div>
+          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-ivital-dark">
+            Hệ sinh thái <br />
+            <span className="gradient-text">Chăm sóc sức khỏe</span> toàn diện
+          </h1>
+          <p className="text-xl text-ivital-gray max-w-xl leading-relaxed">
             iVital Technology kết hợp sức mạnh của AI và dữ liệu lớn để mang lại giải pháp chăm sóc sức khỏe cá nhân hóa, hiệu quả và dễ tiếp cận cho mọi người.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.8 }}
-            className="flex flex-wrap justify-center gap-4 mb-16"
-          >
-            <motion.button
-              onClick={() => onPageChange('ecosystem')}
-              className="btn-primary flex items-center gap-2 text-base px-8 py-4"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-            >
+          </p>
+          <div className="flex flex-wrap gap-4 pt-4">
+            <button onClick={() => onPageChange('ecosystem')} className="btn-primary flex items-center gap-2">
               Khám phá hệ sinh thái <ArrowRight size={20} />
-            </motion.button>
-            <motion.button
-              onClick={() => onPageChange('about')}
-              className="btn-outline text-base px-8 py-4"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-            >
+            </button>
+            <button onClick={() => onPageChange('about')} className="btn-outline">
               Về chúng tôi
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
+        </motion.div>
 
-          {/* Stats row */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.0 }}
-            className="flex flex-wrap justify-center gap-8 md:gap-16"
-          >
-            {[
-              { value: '4+', label: 'Sản phẩm' },
-              { value: '24/7', label: 'Hỗ trợ AI' },
-              { value: '100%', label: 'Bảo mật' },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <p className="text-3xl md:text-4xl font-extrabold gradient-text">{stat.value}</p>
-                <p className="text-sm text-ivital-gray mt-1">{stat.label}</p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="flex-1 relative"
+        >
+          <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
+            <img 
+              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80" 
+              alt="Health Tech" 
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          <FloatingStatCard
+            icon={<ShieldCheck size={24} />}
+            iconClassName="bg-green-100 text-green-600"
+            label="Bảo mật"
+            value="100% An toàn"
+            className="absolute -top-10 -right-10"
+          />
+          <FloatingStatCard
+            icon={<Activity size={24} />}
+            iconClassName="bg-blue-100 text-blue-600"
+            label="Theo dõi"
+            value="Thời gian thực"
+            className="absolute -bottom-10 -left-10"
+            style={{ animationDelay: '1.5s' }}
+          />
+        </motion.div>
       </section>
 
       {/* Strategic Vision */}
