@@ -116,6 +116,10 @@ export const Home = ({ onPageChange }: PageProps) => {
           { width: 200, top: '20%', left: '25%', color: '#FF6B9D', opacity: 0.12, duration: 10 },
           { width: 280, top: '50%', right: '5%', color: '#4A90E2', opacity: 0.10, duration: 12 },
           { width: 160, top: '72%', left: '30%', color: '#a855f7', opacity: 0.08, duration: 14 },
+          { width: 240, top: '35%', left: '2%', color: '#FF6B9D', opacity: 0.09, duration: 11 },
+          { width: 180, top: '60%', right: '15%', color: '#4A90E2', opacity: 0.11, duration: 13 },
+          { width: 300, top: '10%', left: '40%', color: '#a855f7', opacity: 0.07, duration: 15 },
+          { width: 220, top: '80%', right: '30%', color: '#FF6B9D', opacity: 0.10, duration: 9 },
         ].map((pulse, i) => (
           <motion.div
             key={`pulse-${i}`}
@@ -143,55 +147,60 @@ export const Home = ({ onPageChange }: PageProps) => {
           </motion.div>
         ))}
 
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex-1 space-y-8"
-          style={{ x: parallax2X }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold animate-float">
+        <div className="flex-1 space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-ivital-pink/10 text-ivital-pink rounded-full text-sm font-bold animate-float"
+          >
             <Activity size={16} /> Tiên phong công nghệ y tế
-          </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-ivital-dark">
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+            className="text-5xl md:text-7xl font-extrabold leading-tight text-ivital-dark"
+          >
             Hệ sinh thái <br />
             <span className="gradient-text">Chăm sóc sức khỏe</span> toàn diện
-          </h1>
-          <p className="text-xl text-ivital-gray max-w-xl leading-relaxed">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+            className="text-xl text-ivital-gray max-w-xl leading-relaxed"
+          >
             iVital Technology kết hợp sức mạnh của AI và dữ liệu lớn để mang lại giải pháp chăm sóc sức khỏe cá nhân hóa, hiệu quả và dễ tiếp cận cho mọi người.
-          </p>
-          <div className="flex flex-wrap gap-4 pt-4">
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.45, ease: 'easeOut' }}
+            className="flex flex-wrap gap-4 pt-4"
+          >
             <button onClick={() => onPageChange('ecosystem')} className="btn-primary flex items-center gap-2">
               Khám phá hệ sinh thái <ArrowRight size={20} />
             </button>
             <button onClick={() => onPageChange('about')} className="btn-outline">
               Về chúng tôi
             </button>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 1, delay: 0.3 }}
           className="flex-1 relative"
-          style={{ transformStyle: 'preserve-3d' }}
         >
-          <motion.div
-            className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white"
-            style={{
-              rotateX,
-              rotateY,
-              transformStyle: 'preserve-3d',
-            }}
-          >
+          <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
             <img 
               src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80" 
               alt="Health Tech" 
               className="w-full h-auto object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-ivital-pink/10 to-transparent pointer-events-none" />
-          </motion.div>
+          </div>
           <motion.div
             className="absolute -top-10 -right-10"
             style={{ x: parallax1X, y: parallax1Y, translateZ: 60 }}
