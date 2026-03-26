@@ -304,34 +304,23 @@ export const Home = ({ onPageChange }: PageProps) => {
       </section>
 
       {/* Ecosystem Preview */}
-      <section className="section-padding bg-ivital-dark text-white overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white rounded-full" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white rounded-full" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-white rounded-full" />
-        </div>
-
+      <section className="py-16 md:py-20 px-6 md:px-12 lg:px-24 bg-ivital-dark text-white overflow-hidden relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center space-y-6 mb-16">
+          <div className="text-center space-y-4 mb-10">
             <h2 className="text-sm font-bold text-ivital-pink uppercase tracking-widest">Hệ sinh thái iVital</h2>
-            <h3 className="text-4xl md:text-5xl font-extrabold">Mọi giải pháp trong một điểm chạm</h3>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <h3 className="text-3xl md:text-4xl font-extrabold">Mọi giải pháp trong một điểm chạm</h3>
+            <p className="text-gray-400 max-w-xl mx-auto text-sm md:text-base">
               Chúng tôi xây dựng một vòng lặp khép kín từ phòng ngừa, chẩn đoán đến điều trị và phục hồi chức năng.
             </p>
           </div>
 
-          <div className="flex items-center justify-center py-8">
+          <div className="flex items-center justify-center">
             {/* Orbit container */}
-            <div className="relative" style={{ width: 'min(90vw, 700px)', height: 'min(90vw, 700px)' }}>
-              {/* Orbit track */}
-              <div className="absolute inset-0 border border-white/8 rounded-full" />
-              <motion.div
-                className="absolute inset-[-2%] border border-dashed border-white/5 rounded-full"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-              />
+            <div className="relative" style={{ width: 'min(80vw, 480px)', height: 'min(80vw, 480px)' }}>
+              {/* Single orbit track */}
+              <div className="absolute inset-0 border border-white/[0.06] rounded-full" />
 
-              {/* Orbiting cards - true rotation */}
+              {/* Orbiting cards */}
               {ecosystemPreviewItems.map((item, idx) => {
                 const startAngle = idx * 90;
                 return (
@@ -341,18 +330,17 @@ export const Home = ({ onPageChange }: PageProps) => {
                       animate={{ rotate: [startAngle, startAngle + 360] }}
                       transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
                     >
-                      {/* Card sits at top center of orbit, pushed out by 50% radius */}
                       <motion.div
-                        className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 z-10 bg-white/[0.07] backdrop-blur-xl border border-white/10 rounded-2xl p-3 sm:p-4 hover:bg-white/15 hover:border-ivital-pink/30 transition-all cursor-pointer"
-                        style={{ width: 'clamp(120px, 22vw, 190px)' }}
+                        className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 z-10 bg-white/[0.07] backdrop-blur-xl border border-white/10 rounded-xl p-2.5 sm:p-3 hover:bg-white/15 hover:border-ivital-pink/30 transition-all cursor-pointer"
+                        style={{ width: 'clamp(100px, 20vw, 150px)' }}
                         animate={{ rotate: [-(startAngle), -(startAngle + 360)] }}
                         transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
                       >
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-ivital-pink/20 text-ivital-pink rounded-xl flex items-center justify-center mb-2">
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 bg-ivital-pink/20 text-ivital-pink rounded-lg flex items-center justify-center mb-1.5">
                           {item.icon}
                         </div>
-                        <h4 className="text-xs sm:text-sm font-bold mb-0.5 text-white">{item.title}</h4>
-                        <p className="text-gray-400 text-[10px] sm:text-xs leading-tight">{item.description}</p>
+                        <h4 className="text-[11px] sm:text-xs font-bold mb-0.5 text-white">{item.title}</h4>
+                        <p className="text-gray-400 text-[9px] sm:text-[10px] leading-tight">{item.description}</p>
                       </motion.div>
                     </motion.div>
                   </div>
@@ -360,13 +348,12 @@ export const Home = ({ onPageChange }: PageProps) => {
               })}
 
               {/* Small center: iVital CORE */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[35%] h-[35%]">
-                <div className="absolute inset-0 bg-ivital-pink/25 blur-[60px] rounded-full animate-pulse" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] h-[30%]">
+                <div className="absolute inset-0 bg-ivital-pink/20 blur-[40px] rounded-full animate-pulse" />
                 <div className="relative z-10 w-full h-full bg-gradient-to-br from-ivital-pink to-ivital-blue rounded-full flex items-center justify-center shadow-2xl shadow-ivital-pink/20">
                   <div className="text-center">
-                    <span className="text-3xl sm:text-4xl md:text-5xl font-black text-white opacity-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">V</span>
-                    <h4 className="text-lg sm:text-xl md:text-2xl font-black text-white relative z-10">iVital</h4>
-                    <p className="text-white/80 font-bold relative z-10 text-[10px] sm:text-xs">CORE</p>
+                    <h4 className="text-sm sm:text-base md:text-lg font-black text-white">iVital</h4>
+                    <p className="text-white/80 font-bold text-[8px] sm:text-[10px]">CORE</p>
                   </div>
                 </div>
               </div>
