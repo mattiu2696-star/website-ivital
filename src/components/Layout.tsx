@@ -59,7 +59,7 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           {navItems.map((item) => (
             <Link
               key={item.id}
@@ -71,19 +71,21 @@ export const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
               {item.label}
             </Link>
           ))}
-          <Link 
-            to="/contact"
-            className="btn-primary flex items-center gap-2 text-sm"
-          >
-            {t.nav.contact} <ChevronRight size={16} />
-          </Link>
-          <button
-            onClick={() => setLocale(locale === 'vi' ? 'en' : 'vi')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 text-sm font-bold text-ivital-dark hover:bg-ivital-light transition-colors"
-          >
-            <Globe size={14} />
-            {locale === 'vi' ? 'EN' : 'VI'}
-          </button>
+          <div className="flex items-center gap-3 ml-2">
+            <button
+              onClick={() => setLocale(locale === 'vi' ? 'en' : 'vi')}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-bold text-ivital-dark/70 hover:text-ivital-pink hover:bg-ivital-pink/5 transition-colors"
+            >
+              <Globe size={15} />
+              {locale === 'vi' ? 'EN' : 'VI'}
+            </button>
+            <Link 
+              to="/contact"
+              className="btn-primary flex items-center gap-2 text-sm px-5 py-2.5"
+            >
+              {t.nav.contact} <ChevronRight size={16} />
+            </Link>
+          </div>
         </div>
 
         {/* Mobile Toggle */}
