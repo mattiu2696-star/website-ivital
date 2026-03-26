@@ -8,6 +8,27 @@ import { CallToActionBanner } from './ui/CallToActionBanner';
 import { FloatingStatCard } from './ui/FloatingStatCard';
 import { useLanguage } from '../i18n/LanguageContext';
 
+type FloatingHeartConfig = {
+  size: number;
+  top: string;
+  left?: string;
+  right?: string;
+  color: string;
+  opacity: number;
+  duration: number;
+  rotateEnd: number;
+};
+
+type PulseLineConfig = {
+  width: number;
+  top: string;
+  left?: string;
+  right?: string;
+  color: string;
+  opacity: number;
+  duration: number;
+};
+
 const visionIcons = [
   <Database className="text-ivital-pink" size={32} />,
   <Zap className="text-ivital-blue" size={32} />,
@@ -26,7 +47,7 @@ const projectShowcaseImages = [
   'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&q=80',
 ];
 
-export const Home = ({ onPageChange }: PageProps) => {
+export const Home = (_: PageProps) => {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const heroRef = useRef<HTMLElement>(null);
@@ -73,7 +94,7 @@ export const Home = ({ onPageChange }: PageProps) => {
         <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-r from-ivital-blue/10 to-transparent -z-10 blur-3xl" />
 
         {/* 3D Floating Hearts */}
-        {[
+        {([
           { size: 60, top: '8%', left: '6%', color: '#FF6B9D', opacity: 0.18, duration: 14, rotateEnd: 20 },
           { size: 35, top: '25%', left: '18%', color: '#4A90E2', opacity: 0.15, duration: 18, rotateEnd: -15 },
           { size: 80, top: '15%', right: '12%', color: '#FF6B9D', opacity: 0.12, duration: 20, rotateEnd: 25 },
@@ -81,14 +102,14 @@ export const Home = ({ onPageChange }: PageProps) => {
           { size: 50, top: '55%', left: '8%', color: '#4A90E2', opacity: 0.13, duration: 22, rotateEnd: 15 },
           { size: 40, top: '42%', left: '52%', color: '#FF6B9D', opacity: 0.10, duration: 16, rotateEnd: -18 },
           { size: 24, top: '75%', left: '45%', color: '#a855f7', opacity: 0.14, duration: 13, rotateEnd: 22 },
-        ].map((heart, i) => (
+        ] as FloatingHeartConfig[]).map((heart, i) => (
           <motion.div
             key={`heart-${i}`}
             className="absolute -z-10"
             style={{
               top: heart.top,
-              left: (heart as any).left,
-              right: (heart as any).right,
+              left: heart.left,
+              right: heart.right,
               x: i % 2 === 0 ? parallax1X : parallax2X,
               y: i % 2 === 0 ? parallax1Y : parallax2Y,
             }}
@@ -110,7 +131,7 @@ export const Home = ({ onPageChange }: PageProps) => {
         ))}
 
         {/* Heartbeat / Pulse Lines */}
-        {[
+        {([
           { width: 200, top: '20%', left: '25%', color: '#FF6B9D', opacity: 0.12, duration: 10 },
           { width: 280, top: '50%', right: '5%', color: '#4A90E2', opacity: 0.10, duration: 12 },
           { width: 160, top: '72%', left: '30%', color: '#a855f7', opacity: 0.08, duration: 14 },
@@ -118,14 +139,14 @@ export const Home = ({ onPageChange }: PageProps) => {
           { width: 180, top: '60%', right: '15%', color: '#4A90E2', opacity: 0.11, duration: 13 },
           { width: 300, top: '10%', left: '40%', color: '#a855f7', opacity: 0.07, duration: 15 },
           { width: 220, top: '80%', right: '30%', color: '#FF6B9D', opacity: 0.10, duration: 9 },
-        ].map((pulse, i) => (
+        ] as PulseLineConfig[]).map((pulse, i) => (
           <motion.div
             key={`pulse-${i}`}
             className="absolute -z-10"
             style={{
               top: pulse.top,
-              left: (pulse as any).left,
-              right: (pulse as any).right,
+              left: pulse.left,
+              right: pulse.right,
               x: i % 2 === 0 ? parallax2X : parallax1X,
               y: i % 2 === 0 ? parallax2Y : parallax1Y,
             }}
@@ -201,7 +222,7 @@ export const Home = ({ onPageChange }: PageProps) => {
           </div>
           <motion.div
             className="absolute -top-10 -right-10 z-20"
-            style={{ x: parallax1X, y: parallax1Y, translateZ: 60 }}
+            style={{ x: parallax1X, y: parallax1Y }}
           >
             <FloatingStatCard
               icon={<ShieldCheck size={24} />}
@@ -212,7 +233,7 @@ export const Home = ({ onPageChange }: PageProps) => {
           </motion.div>
           <motion.div
             className="absolute -bottom-10 -left-10 z-20"
-            style={{ x: parallax2X, y: parallax2Y, translateZ: 40 }}
+            style={{ x: parallax2X, y: parallax2Y }}
           >
             <FloatingStatCard
               icon={<Activity size={24} />}
@@ -239,7 +260,7 @@ export const Home = ({ onPageChange }: PageProps) => {
                 whileHover={{ y: -10 }}
                 className="bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all border border-gray-100"
               >
-                <div className="mb-6">{visionIcons[idx]}</div>
+                <div className="mb-6">{visionIcons[idx % visionIcons.length]}</div>
                 <h4 className="text-2xl font-bold mb-4">{item.title}</h4>
                 <p className="text-ivital-gray leading-relaxed">{item.description}</p>
               </motion.div>
@@ -259,10 +280,13 @@ export const Home = ({ onPageChange }: PageProps) => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.02 }}
               className="group relative h-[500px] rounded-[3rem] overflow-hidden cursor-pointer shadow-lg"
               onClick={() => navigate('/projects')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e: React.KeyboardEvent) => e.key === 'Enter' && navigate('/projects')}
             >
               <img 
                 src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80" 
@@ -286,7 +310,7 @@ export const Home = ({ onPageChange }: PageProps) => {
                   className="group relative h-[236px] rounded-[3rem] overflow-hidden cursor-pointer shadow-lg"
                 >
                   <img 
-                    src={projectShowcaseImages[idx]} 
+                    src={projectShowcaseImages[idx % projectShowcaseImages.length]}
                     alt={project.title} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
