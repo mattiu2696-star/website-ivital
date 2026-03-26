@@ -202,7 +202,7 @@ export const Home = ({ onPageChange }: PageProps) => {
             />
           </div>
           <motion.div
-            className="absolute -top-10 -right-10"
+            className="absolute -top-10 -right-10 z-20"
             style={{ x: parallax1X, y: parallax1Y, translateZ: 60 }}
           >
             <FloatingStatCard
@@ -213,7 +213,7 @@ export const Home = ({ onPageChange }: PageProps) => {
             />
           </motion.div>
           <motion.div
-            className="absolute -bottom-10 -left-10"
+            className="absolute -bottom-10 -left-10 z-20"
             style={{ x: parallax2X, y: parallax2Y, translateZ: 40 }}
           >
             <FloatingStatCard
