@@ -58,12 +58,12 @@ export const About = ({ onPageChange }: PageProps) => {
                 className="w-full h-auto"
               />
             </div>
-            <div className="absolute -bottom-10 -right-10 glass-card p-10 rounded-[3rem] shadow-xl max-w-xs space-y-4">
-              <div className="w-16 h-16 bg-ivital-pink text-white rounded-2xl flex items-center justify-center">
-                <Globe size={32} />
+            <div className="absolute -bottom-8 -right-8 glass-card p-6 rounded-[2rem] shadow-xl max-w-[220px] space-y-3">
+              <div className="w-12 h-12 bg-ivital-pink text-white rounded-xl flex items-center justify-center">
+                <Globe size={24} />
               </div>
-              <h4 className="text-2xl font-bold">Vươn tầm thế giới</h4>
-              <p className="text-ivital-gray text-sm">Khát vọng đưa giải pháp y tế Việt Nam ra bản đồ công nghệ toàn cầu.</p>
+              <h4 className="text-lg font-bold leading-snug">Vươn tầm thế giới</h4>
+              <p className="text-ivital-gray text-xs leading-relaxed">Khát vọng đưa giải pháp y tế Việt Nam ra bản đồ công nghệ toàn cầu.</p>
             </div>
           </div>
 
