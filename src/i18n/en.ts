@@ -14,7 +14,7 @@ export const en: Translations = {
   // Home page
   home: {
     heroBadge: 'Pioneering Health Technology',
-    heroTitle1: 'A Comprehensive',
+    heroTitle1: 'Complete',
     heroTitle2: 'Healthcare',
     heroTitle3: 'Ecosystem',
     heroDescription: 'iVital Technology combines the power of AI and Big Data to deliver personalized, effective, and accessible healthcare solutions for everyone.',
