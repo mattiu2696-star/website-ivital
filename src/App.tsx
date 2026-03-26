@@ -6,6 +6,7 @@ import { About } from './components/About';
 import { Projects } from './components/Projects';
 import { Ecosystem } from './components/Ecosystem';
 import { Contact } from './components/Contact';
+import { NotFound } from './components/NotFound';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -103,6 +104,7 @@ function AppContent() {
               <Route path="/projects" element={<Projects onPageChange={onPageChange} />} />
               <Route path="/ecosystem" element={<Ecosystem onPageChange={onPageChange} />} />
               <Route path="/contact" element={<Contact onPageChange={onPageChange} />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </motion.div>
         </AnimatePresence>

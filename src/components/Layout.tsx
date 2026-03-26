@@ -179,7 +179,7 @@ export const Footer = ({ onPageChange }: { onPageChange: (page: Page) => void })
       </div>
 
       <div className="max-w-7xl mx-auto pt-10 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
-        <p>© 2025 iVital Technology. All rights reserved.</p>
+        <p>© 2026 iVital Technology. All rights reserved.</p>
         <div className="flex gap-8">
           <button className="hover:text-white transition-colors">Điều khoản sử dụng</button>
           <button className="hover:text-white transition-colors">Chính sách bảo mật</button>
