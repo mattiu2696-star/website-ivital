@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import { motion } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin, Send, MessageCircle, Globe, Users, Building2, ArrowRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
@@ -24,7 +24,7 @@ export const Contact = (_props: PageProps) => {
     { icon: <MessageCircle />, label: 'Zalo', value: 'iVital Technology', color: 'bg-ivital-blue/10 text-ivital-blue' },
   ];
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
 

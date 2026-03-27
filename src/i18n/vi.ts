@@ -336,6 +336,6 @@ export const vi = {
     ctaDownloadAndroid: 'Tải cho Android',
     ctaContact: 'Liên hệ tư vấn',
   },
-} as const;
+};
 
 export type Translations = typeof vi;

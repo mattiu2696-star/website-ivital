@@ -8,6 +8,9 @@ import { Ecosystem } from './components/Ecosystem';
 import { Contact } from './components/Contact';
 import { NotFound } from './components/NotFound';
 import { IVitalCare } from './components/IVitalCare';
+import { IVitalAI } from './components/IVitalAI';
+import { IVitalLab } from './components/IVitalLab';
+import { IVitalBP } from './components/IVitalBP';
 import { Page } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 import { LanguageProvider } from './i18n/LanguageContext';
@@ -107,6 +110,9 @@ function AppContent() {
               <Route path="/ecosystem" element={<Ecosystem onPageChange={onPageChange} />} />
               <Route path="/contact" element={<Contact onPageChange={onPageChange} />} />
               <Route path="/ivital-care" element={<IVitalCare />} />
+              <Route path="/ivital-ai" element={<IVitalAI />} />
+              <Route path="/ivital-lab" element={<IVitalLab />} />
+              <Route path="/ivital-bp" element={<IVitalBP />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </motion.div>
